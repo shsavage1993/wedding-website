@@ -1,0 +1,34 @@
+.nav-fill {
+	max-height: 100vh;
+	overflow: auto;
+}
+
+@media (min-width: 768px) {
+	.nav-fill {
+		max-width: 65rem;
+		min-width: 35rem;
+		width: 80%;
+		max-height: none !important;
+	}
+}
+
+.nav-item {
+	display: flex;
+	justify-content: center;
+}
+
+.nav-link {
+	font-size: large;
+	display: table-cell;
+	vertical-align: middle;
+	height: 60px;
+}
+
+.nav-link:hover {
+	color: #980000 !important;
+}
+
+.nav-link.active {
+	-webkit-text-stroke: 0.5px #980000;
+	color: #980000 !important;
+}
