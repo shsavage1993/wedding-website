@@ -25,10 +25,10 @@
 }
 
 .nav-link:hover {
-	color: #980000 !important;
+	color: var(--primary) !important;
 }
 
 .nav-link.active {
-	-webkit-text-stroke: 0.5px #980000;
-	color: #980000 !important;
+	-webkit-text-stroke: 0.5px var(--primary);
+	color: var(--primary) !important;
 }

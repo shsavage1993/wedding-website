@@ -12,19 +12,14 @@ import { RsvpFormPhone } from './RsvpFormPhone';
 import { RsvpFormAttending } from './RsvpFormAttending';
 import { RsvpFormDietraryReq } from './RsvpFormDietaryReq';
 import { RsvpFormOther } from './RsvpFormOther';
-import axios from 'axios';
+import { FormValues } from '../model/types';
+import { db } from '../firebase/config';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-interface formType {
-	formValues: {
-		firstName: string;
-		lastName: string;
-		email: string;
-		phone: string;
-		singapore: boolean;
-		copenhagen: boolean;
-		dietaryReq: string;
-		other: string;
-	};
+// import axios from 'axios';
+
+interface FormType {
+	formValues: FormValues;
 }
 
 const { Formik } = formik;
@@ -43,7 +38,7 @@ const schema = yup.object().shape({
 export const RsvpForm: FC = () => {
 	const code = useContext(CodeContext);
 
-	const history = useHistory<formType>();
+	const history = useHistory<FormType>();
 	const initValues =
 		history.location.state && history.location.state.formValues
 			? history.location.state.formValues
@@ -64,35 +59,29 @@ export const RsvpForm: FC = () => {
 			validationSchema={schema}
 			validateOnChange={false}
 			validateOnBlur={false}
-			// onSubmit={async (values, { setSubmitting }) => {
-			// 	try {
-			// 		if (values.phone) {
-			// 			values.phone =
-			// 				values.phone[0] !== '+'
-			// 					? '+' + values.phone
-			// 					: values.phone;
-			// 		}
-			// 		// throw new Error();
-			// 		const res = await axios.post(
-			// 			'http://localhost:3080/api/rsvp',
-			// 			values
-			// 		);
-			// 		console.log(await res);
-			// 		setSubmitting(false);
-			// 		history.push(`/${code}/rsvp/success`);
-			// 	} catch (err) {
-			// 		setSubmitting(false);
-			// 		history.push({
-			// 			pathname: `/${code}/rsvp/error`,
-			// 			state: { formValues: values },
-			// 		});
-			// 	}
-			// }}
-			onSubmit={(values, { setSubmitting }) => {
-				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2));
+			onSubmit={async (values, { setSubmitting }) => {
+				try {
+					if (values.phone) {
+						values.phone =
+							values.phone[0] !== '+'
+								? '+' + values.phone
+								: values.phone;
+					}
+					// throw new Error();
+					await addDoc(collection(db, 'rsvp'), {
+						...values,
+						createdAt: serverTimestamp(),
+					});
 					setSubmitting(false);
-				}, 400);
+					history.push(`/${code}/rsvp/success`);
+				} catch (err) {
+					console.error(err);
+					setSubmitting(false);
+					history.push({
+						pathname: `/${code}/rsvp/error`,
+						state: { formValues: values },
+					});
+				}
 			}}
 		>
 			{({

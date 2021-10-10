@@ -19,7 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const projectStorage = getStorage(app); // starts up storage service
-const projectFirestore = getFirestore(app); //starts up database service
+const db = getFirestore(app); //starts up database service
+const storage = getStorage(app); // starts up storage service
 
-export { projectStorage, projectFirestore };
+export { db, storage };

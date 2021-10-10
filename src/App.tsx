@@ -1,3 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import './fonts.css';
 import React from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Container from 'react-bootstrap/Container';
@@ -12,9 +15,6 @@ import { GalleryPage } from './pages/GalleryPage';
 import { RsvpPage } from './pages/RsvpPage';
 import { RsvpSuccessPage } from './pages/RsvpSuccessPage';
 import { RsvpErrorPage } from './pages/RsvpErrorPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import './fonts.css';
 
 // Create context for variables used throughout application
 export const CodeContext = React.createContext('');

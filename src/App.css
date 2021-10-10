@@ -1,3 +1,9 @@
+:root {
+	--primary: #980000;
+	--secondary: #4e4e4e;
+	--error: #ff4a4a;
+}
+
 html {
 	overflow-y: overlay;
 }
@@ -98,47 +104,3 @@ Small 		≥576px
 Medium	 	≥768px
 Large 		≥992px
 Extra large ≥1200px */
-
-/* #f6f1ee
-#f6dcd3
-#ebbbaa
-#edae98
-#fbbc93
-#f7bfb4
-#d4938b
-#97534c
-#95483f */
-
-/* #silhouette {
-	background: linear-gradient(
-		to bottom,
-		#f7bfb4 22%,
-		#f6dcd3 34%,
-		#ebbbaa 46%,
-		#edae98 47%,
-		#ebbbaa 55%,
-		#f6dcd3 76%,
-		#f7bfb4 88%
-	);
-	-webkit-mask-box-image: url(./images/logo.png);
-
-} */
-
-/* h1 {
-	background: linear-gradient(
-		to bottom,
-		#f7bfb4 22%,
-		#f6dcd3 34%,
-		#ebbbaa 46%,
-		#edae98 47%,
-		#ebbbaa 55%,
-		#f6dcd3 76%,
-		#f7bfb4 88%
-	);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	color: #fff;
-	margin: 0;
-	padding: 3vh;
-	-webkit-text-stroke: 2.5px transparent;
-} */

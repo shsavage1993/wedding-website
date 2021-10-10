@@ -8,3 +8,12 @@ export interface FormValues {
 	dietaryReq: string;
 	other: string;
 }
+
+export interface ImgListValues {
+	name: string;
+	src: string;
+	timestamp: number;
+	width: number;
+	height: number;
+	loading: string;
+}

@@ -73,18 +73,21 @@ export const CopenhagenPage: FC = () => {
 					03:00: Carriages Home
 				</h5>
 
-				<div className="p-4"></div>
+				<div style={{ padding: '1.2rem' }}></div>
 
-				<h5>
-					Covid guidance:
-					<br />
-					The limit on indoor and outdoor gatherings is 500 people.
-					Restaurants and cafes are open. For indoor dining, you will
-					need to have a 'corona pass' (full vaccination, a negative
-					test taken within 72 hours, or a positive test taken between
-					14 days and 12 weeks ago). For outdoor dining, a 'corona
-					pass' is not required.
+				<h5 className="xs-h5 sm-h5">
+					<b>Covid guidance:</b>
 				</h5>
+				<h6 className="xs-h6 sm-h6">
+					<b>
+						The limit on indoor and outdoor gatherings is 500
+						people. Restaurants and cafes are open. For indoor
+						dining, you will need to have a 'corona pass' (full
+						vaccination, a negative test taken within 72 hours, or a
+						positive test taken between 14 days and 12 weeks ago).
+						For outdoor dining, a 'corona pass' is not required.
+					</b>
+				</h6>
 			</CityPageTemplate>
 		);
 	} else {

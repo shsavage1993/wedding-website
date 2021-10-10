@@ -49,6 +49,7 @@ export const CityLogoLinks: FC = () => {
 			</LinkContainer>
 		);
 	}
+
 	if (cph) {
 		cphLink = (
 			<LinkContainer

@@ -25,7 +25,7 @@ export const RsvpFormOther: FC<RsvpFormOtherProps> = ({
 					name="other"
 					value={values.other}
 					placeholder={`Please let us know if you have any other questions or requests...
-        (Leave blank if none)`}
+(Leave blank if none)`}
 					onChange={handleChange}
 				/>
 			</Form.Group>

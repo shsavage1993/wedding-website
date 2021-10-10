@@ -29,14 +29,6 @@ export const CodeInput: FC = () => {
 	return (
 		<Form className="py-4 d-inline" noValidate onSubmit={handleSubmit}>
 			<Row className="justify-content-center align-items-start">
-				{/* <Col
-					xs="auto"
-					style={{
-						position: 'relative',
-						height: 'calc(48px + 1em)',
-					}}
-					// className="my-1"
-				> */}
 				<Form.Control
 					ref={inputElement}
 					type="text"
@@ -54,10 +46,7 @@ export const CodeInput: FC = () => {
 					}}
 				/>
 				<Row className="py-2 px-0 justify-content-center align-items-start">
-					<Col
-						xs="auto"
-						// className="my-1"
-					>
+					<Col xs="auto">
 						<Button
 							variant={buttonType}
 							type="submit"

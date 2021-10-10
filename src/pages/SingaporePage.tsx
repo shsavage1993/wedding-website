@@ -71,17 +71,17 @@ export const SingaporePage: FC = () => {
 					00:00: Carriages Home
 				</h5>
 
-				<div className="p-4"></div>
+				<div style={{ padding: '1.2rem' }}></div>
 
-				<h5>
-					Fun Customs & Traditions:
-					<ul>
+				<h5 className="xs-h5 sm-h5">Fun Customs & Traditions:</h5>
+				<h6 className="xs-h6 sm-h6">
+					<ul className="traditions-ul">
 						<li>
 							Red plays a vital role in Chinese weddings, because
 							this color is associated with success, loyalty,
 							honor, fertility, and love, amongst others. Because
 							of this, decorations at Chinese weddings are
-							generally in red, and so is the bride's dress.{' '}
+							generally in red, and so is the bride's dress.
 						</li>
 						<li>
 							Before a Chinese wedding celebration, the groom will
@@ -118,14 +118,22 @@ export const SingaporePage: FC = () => {
 							China.
 						</li>
 					</ul>
-				</h5>
+				</h6>
 
-				<h5>
-					Covid guidance:
-					<br />
-					Wedding reception All vaccinated^ : 250 attendees Group size
-					limited to 5 persons^^. 1 reception only.
+				<div style={{ padding: '1.1rem' }}></div>
+
+				<h5 className="xs-h5 sm-h5">
+					<b>Covid guidance:</b>
 				</h5>
+				<h6 className="xs-h6 sm-h6">
+					<b>
+						The limit on wedding receptions at external venues is
+						250 people, with group sizes of up to 5 attendees. All
+						attendees must undergo Pre-Event Testing (PET) unless
+						fully vaccinated or recovered from COVID-19, or a child
+						aged 12 years or below.
+					</b>
+				</h6>
 			</CityPageTemplate>
 		);
 	} else {
