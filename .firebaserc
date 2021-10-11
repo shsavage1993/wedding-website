@@ -1,8 +1,8 @@
 {
-	"projects": {
-		"default": "soren-michelle-wedding-dev",
-		"dev": "soren-michelle-wedding-dev",
-		"prod": "soren-michelle-wedding"
-	},
-	"targets": {}
+  "projects": {
+    "default": "soren-michelle-wedding-dev",
+    "dev": "soren-michelle-wedding-dev",
+    "prod": "soren-michelle-wedding"
+  },
+  "targets": {}
 }
