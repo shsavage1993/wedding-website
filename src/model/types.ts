@@ -15,5 +15,4 @@ export interface ImgListValues {
 	timestamp: number;
 	width: number;
 	height: number;
-	loading: string;
 }

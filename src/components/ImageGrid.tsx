@@ -20,25 +20,6 @@ export const ImageGrid: FC<ImageGridProps> = ({
 	setImageList,
 	master,
 }) => {
-	// const [items, setItems] = useState<
-	// 	{
-	// 		src: string;
-	// 		width: number;
-	// 		height: number;
-	// 	}[]
-	// >([]);
-
-	// useEffect(() => {
-	// 	const imgList = imageList.map((image) => ({
-	// 		name: image.name,
-	// 		src: image.url,
-	// 		width: 1,
-	// 		height: 1,
-	// 	}));
-
-	// 	setItems(imgList);
-	// }, [imageList]);
-
 	const SortablePhoto = SortableElement((item: any) => (
 		<Photo imageList={imageList} master={master} {...item} />
 	));
@@ -57,7 +38,6 @@ export const ImageGrid: FC<ImageGridProps> = ({
 		const newImageList = arrayMoveImmutable(imageList, oldIndex, newIndex);
 		setImageList(newImageList);
 		const newImageOrder = getNewImageOrder(newImageList);
-		console.log(newImageOrder);
 
 		try {
 			// Update document "images/order"
@@ -76,22 +56,5 @@ export const ImageGrid: FC<ImageGridProps> = ({
 			axis={'xy'}
 			distance={1}
 		/>
-
-		// <Gallery
-		// 	photos={imgList}
-		// 	margin={8}
-		// 	renderImage={(props) => <Photo {...props} />}
-		// />
-
-		// <div className="img-grid">
-		// 	{imageList.map((image) => (
-		// 		<div
-		// 			className="img-wrap"
-		// 			key={image.name}
-		// 		>
-		// 			<img src={image.src} alt={image.name} />
-		// 		</div>
-		// 	))}
-		// </div>
 	);
 };

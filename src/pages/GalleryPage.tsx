@@ -9,7 +9,7 @@ import { ImageGrid } from '../components/ImageGrid';
 import { useGalleryListen } from '../components/useGalleryListen';
 import { ImgListValues } from '../model/types';
 
-const master = false;
+const master = true;
 
 export const GalleryPage: FC = () => {
 	const [imageList, setImageList] = useState<ImgListValues[]>([]);

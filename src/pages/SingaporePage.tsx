@@ -77,45 +77,40 @@ export const SingaporePage: FC = () => {
 				<h6 className="xs-h6 sm-h6">
 					<ul className="traditions-ul">
 						<li>
-							Red plays a vital role in Chinese weddings, because
-							this color is associated with success, loyalty,
-							honor, fertility, and love, amongst others. Because
-							of this, decorations at Chinese weddings are
-							generally in red, and so is the bride's dress.
+							Red plays a vital role in Chinese weddings, as it is
+							associated with success, loyalty, honor, fertility,
+							and love, amongst others. Because of this,
+							decorations at Chinese weddings are generally in
+							red, and so is the bride's dress.
 						</li>
 						<li>
 							Before a Chinese wedding celebration, the groom will
-							often go to the bride's house to collect her.
-							However, the bride will be surrounded by a few of
-							her girlfriends, who will tease the groom before
-							handing over the bride. The girls will have to be
-							bribed or convinced by the groom with pretends or
-							envelopes with money before they will hand over
-							their friend, the bride. Then, the bride and groom
-							will bow to the bride's parents before taking her to
-							the groom's house.
+							often go to the bride's house to collect her. The
+							bride will be surrounded by a few of her
+							girlfriends, who will have to be bribed or convinced
+							before they will hand over the bride. Then, the
+							bride and groom will bow to the bride's parents
+							before going to the groom's house.
 						</li>
 						<li>
-							The tea ceremony is to honor parents and always
-							begins with prayer. Popular tea varieties used
-							include: orange blossom, black dragon, green tea.
-							The couple kneels on tea pillows facing the parents
-							and take turns serving tea to each set of parents.
+							The tea ceremony is to honour parents and always
+							begins with prayer. The couple kneels on tea pillows
+							facing the parents and take turns serving tea to
+							each set of parents.
 						</li>
 						<li>
 							Decorations in the hall will usually involve 囍 the
 							"double joy" character, reserved solely for
-							matrimonial usage. Colors are red and gold mostly,
-							and banners with wishes in various different
-							phrases, will also be hung on the doors and windows
-							of the venue in order to wish the new couple well.
+							matrimonial usage. Banners with wishes in various
+							different phrases will also be hung on the doors and
+							windows of the venue in order to wish the new couple
+							well.
 						</li>
 						<li>
-							As visitors to the wedding, you usually will give a
-							red envelope to the bride and groom, with money
-							inside it. Make sure you do not put anything in
-							multiples of four, as four is an unlucky number in
-							China.
+							Visitors to the wedding will usually give a red
+							envelope with money to the bride and groom. Make
+							sure not to put anything in multiples of four, as
+							four is an unlucky number in Chinese tradition.
 						</li>
 					</ul>
 				</h6>

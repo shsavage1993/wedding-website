@@ -54,8 +54,8 @@ function App() {
 						<Container
 							fluid
 							id="main"
-							className="px-1 vh-100 d-flex flex-column"
-							style={{ display: 'none' }}
+							className="px-0 vh-100 d-flex flex-column"
+							style={{ visibility: 'hidden' }}
 						>
 							<NavBar />
 							<Switch location={location} key={location.pathname}>

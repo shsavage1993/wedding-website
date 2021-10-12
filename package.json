@@ -19,6 +19,7 @@
 		"react": "^16.14.0",
 		"react-bootstrap": "^2.0.0-rc.0",
 		"react-dom": "^16.14.0",
+		"react-lazy-load-image-component": "^1.5.1",
 		"react-phone-input-2": "^2.14.0",
 		"react-photo-gallery": "^8.0.0",
 		"react-router-bootstrap": "^0.25.0",
@@ -35,7 +36,7 @@
 		"build": "react-scripts build",
 		"build:dev": "env-cmd -f .env.development npm run build",
 		"build:prod": "env-cmd -f .env.production npm run build",
-		"deploy:local": "./deploy.sh",
+		"deploy:local": "sh ./deploy.sh",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
@@ -58,6 +59,7 @@
 		]
 	},
 	"devDependencies": {
+		"@types/react-lazy-load-image-component": "^1.5.2",
 		"@types/react-router-bootstrap": "^0.24.5",
 		"@types/react-router-dom": "^5.1.8"
 	}

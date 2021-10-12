@@ -7,6 +7,10 @@ import { deleteDoc } from 'firebase/firestore';
 import removeIcon from '../images/cancel_white_24dp.svg';
 import { getNewImageOrder } from '../functions/getNewImageOrder';
 import { ImgListValues } from '../model/types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import 'react-lazy-load-image-component/src/effects/black-and-white.css';
+// import 'react-lazy-load-image-component/src/effects/blur.css';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 const imgWithClick = { cursor: 'pointer' };
 
@@ -85,7 +89,7 @@ export const Photo: FC<PhotoProps> = ({
 	imageList,
 	master,
 }) => {
-	const imgStyle: any = { margin: margin, objectFit: 'cover' };
+	const imgStyle: any = { objectFit: 'cover' };
 	if (direction === 'column') {
 		imgStyle.position = 'absolute';
 		imgStyle.left = left;
@@ -97,16 +101,20 @@ export const Photo: FC<PhotoProps> = ({
 	};
 
 	return (
-		<div className="photo-div" style={{ position: 'relative' }}>
+		<div
+			className="photo-div"
+			style={{ margin: margin, position: 'relative' }}
+		>
 			{master && (
 				<RemoveImgIcon imageName={photo.name} imageList={imageList} />
 			)}
-			<img
+			<LazyLoadImage
 				className="photo"
 				style={onClick ? { ...imgStyle, ...imgWithClick } : imgStyle}
 				{...photo}
 				onClick={onClick ? handleClick : null}
 				alt="img"
+				effect="opacity"
 			/>
 		</div>
 	);

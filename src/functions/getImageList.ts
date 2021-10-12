@@ -21,7 +21,6 @@ export const getImageList = async (imgCustomOrder: number[] | null = null) => {
 			timestamp: imgDoc.data().createdAt.toMillis(),
 			width: 1,
 			height: 1,
-			loading: 'lazy',
 		});
 	});
 

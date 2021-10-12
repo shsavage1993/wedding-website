@@ -19,8 +19,8 @@ html {
 	-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-main {
-	display: block !important;
+#main {
+	visibility: visible !important;
 }
 
 @media (min-width: 768px) {
