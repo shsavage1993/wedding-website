@@ -28,7 +28,14 @@ export const SingaporePage: FC = () => {
 					<br />
 					Time: 18:30 - 24:00
 					<br />
-					Venue: Orchard Hotel Singapore
+					Venue:{' '}
+					<a
+						href="https://www.google.com/maps/place/Orchard+Hotel+Singapore/@1.3075,103.8286111,15z/data=!4m8!3m7!1s0x0:0x2dd9483a55dcece2!5m2!4m1!1i2!8m2!3d1.3075!4d103.8286111"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Orchard Hotel Singapore
+					</a>
 					<br />
 					Dresscode: Cocktail
 				</h5>

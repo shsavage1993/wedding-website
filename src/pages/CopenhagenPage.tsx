@@ -28,7 +28,14 @@ export const CopenhagenPage: FC = () => {
 					<br />
 					Time: 18:00 - 03:00
 					<br />
-					Venue: Villa Copenhagen
+					Venue:{' '}
+					<a
+						href="https://www.google.com/maps/place/Villa+Copenhagen/@55.6714149,12.5676969,15z/data=!4m8!3m7!1s0x0:0x93c823393bdc1527!5m2!4m1!1i2!8m2!3d55.6714149!4d12.5676969"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Villa Copenhagen
+					</a>
 					<br />
 					Dresscode: Black Tie
 				</h5>
