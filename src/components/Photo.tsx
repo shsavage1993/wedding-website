@@ -76,6 +76,7 @@ interface PhotoProps {
 	left?: any;
 	imageList: ImgListValues[];
 	master: boolean;
+	update: boolean;
 }
 
 export const Photo: FC<PhotoProps> = ({
@@ -88,8 +89,9 @@ export const Photo: FC<PhotoProps> = ({
 	left,
 	imageList,
 	master,
+	update,
 }) => {
-	const imgStyle: any = { objectFit: 'cover' };
+	const imgStyle: any = { objectFit: 'cover', opacity: update ? 0 : 1 };
 	if (direction === 'column') {
 		imgStyle.position = 'absolute';
 		imgStyle.left = left;

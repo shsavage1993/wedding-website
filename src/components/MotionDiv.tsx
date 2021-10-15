@@ -7,6 +7,7 @@ export const MotionDiv: FC = (props) => {
 	const containerElement = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		// display page at top
 		if (containerElement && containerElement.current) {
 			containerElement.current.style.display = 'block';
 		}

@@ -16,6 +16,7 @@
 		"firebase": "^9.1.2",
 		"formik": "^2.2.9",
 		"framer-motion": "^4.1.17",
+		"rc-resize-observer": "^1.0.1",
 		"react": "^16.14.0",
 		"react-bootstrap": "^2.0.0-rc.0",
 		"react-dom": "^16.14.0",
