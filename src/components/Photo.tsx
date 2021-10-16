@@ -1,5 +1,5 @@
 import React from 'react';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { db, storage } from '../firebase/config';
 import { ref, deleteObject } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
@@ -15,17 +15,27 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 const imgWithClick = { cursor: 'pointer' };
 
 interface RemoveImgIconProps {
+	photoRef: React.RefObject<HTMLDivElement>;
 	imageName: string;
 	imageList: ImgListValues[];
-	// setImageList: React.Dispatch<React.SetStateAction<ImgListValues[]>>;
 }
 
 const RemoveImgIcon: FC<RemoveImgIconProps> = ({
+	photoRef,
 	imageName,
 	imageList,
-	// setImageList,
 }) => {
+	const removeIconRef = useRef<HTMLDivElement>(null);
+
 	const handleRemoveImgIconClick = async (event: any) => {
+		if (removeIconRef.current) {
+			removeIconRef.current.style.display = 'none';
+		}
+		if (photoRef.current) {
+			console.log(photoRef.current);
+			photoRef.current.style.filter = 'grayscale(100%)';
+		}
+
 		// TODO: Create confirmation modal
 		// clone imageList to modify it
 		const imgList = [...imageList];
@@ -34,8 +44,6 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 		if (index > -1) {
 			imgList.splice(index, 1);
 		}
-
-		// setImageList(imgList)
 
 		const newImageOrder = getNewImageOrder(imgList);
 
@@ -55,7 +63,7 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 	};
 
 	return (
-		<div className="remove-img-icon">
+		<div ref={removeIconRef} className="remove-img-icon">
 			<img
 				className="remove-img-icon-img"
 				src={removeIcon}
@@ -91,6 +99,8 @@ export const Photo: FC<PhotoProps> = ({
 	master,
 	update,
 }) => {
+	const photoRef = useRef<HTMLDivElement>(null);
+
 	const imgStyle: any = { objectFit: 'cover', opacity: update ? 0 : 1 };
 	if (direction === 'column') {
 		imgStyle.position = 'absolute';
@@ -106,9 +116,14 @@ export const Photo: FC<PhotoProps> = ({
 		<div
 			className="photo-div"
 			style={{ margin: margin, position: 'relative' }}
+			ref={photoRef}
 		>
 			{master && (
-				<RemoveImgIcon imageName={photo.name} imageList={imageList} />
+				<RemoveImgIcon
+					photoRef={photoRef}
+					imageName={photo.name}
+					imageList={imageList}
+				/>
 			)}
 			<LazyLoadImage
 				className="photo"
