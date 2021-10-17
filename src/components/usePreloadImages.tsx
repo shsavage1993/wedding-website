@@ -16,6 +16,7 @@ export const usePreloadImages = (imageSources: string[]) => {
 		Promise.all(imageSources.map((image) => loadImage(image)))
 			.then(() => setImgsLoaded(true))
 			.catch((err) => console.log('Failed to load images', err));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return imgsLoaded;
