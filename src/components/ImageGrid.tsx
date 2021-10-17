@@ -49,7 +49,6 @@ export const ImageGrid: FC<ImageGridProps> = ({
 		}
 		setUpdate(true);
 		const newImageList = arrayMoveImmutable(imageList, oldIndex, newIndex);
-		// setImageList(newImageList);
 		const newImageOrder = getNewImageOrder(newImageList);
 
 		try {
@@ -69,8 +68,6 @@ export const ImageGrid: FC<ImageGridProps> = ({
 			axis={'xy'}
 			distance={1}
 			disableAutoscroll={true}
-			// lockToContainerEdges={true}
-			// useWindowAsScrollContainer={true}
 		/>
 	);
 };

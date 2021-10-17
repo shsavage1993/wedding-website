@@ -8,25 +8,23 @@ import removeIcon from '../images/cancel_white_24dp.svg';
 import { getNewImageOrder } from '../functions/getNewImageOrder';
 import { ImgListValues } from '../model/types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-// import 'react-lazy-load-image-component/src/effects/black-and-white.css';
-// import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 const imgWithClick = { cursor: 'pointer' };
 
 interface RemoveImgIconProps {
 	photoRef: React.RefObject<HTMLDivElement>;
+	removeIconRef: React.RefObject<HTMLDivElement>;
 	imageName: string;
 	imageList: ImgListValues[];
 }
 
 const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 	photoRef,
+	removeIconRef,
 	imageName,
 	imageList,
 }) => {
-	const removeIconRef = useRef<HTMLDivElement>(null);
-
 	const handleRemoveImgIconClick = async (event: any) => {
 		if (removeIconRef.current) {
 			removeIconRef.current.style.display = 'none';
@@ -100,6 +98,7 @@ export const Photo: FC<PhotoProps> = ({
 	update,
 }) => {
 	const photoRef = useRef<HTMLDivElement>(null);
+	const removeIconRef = useRef<HTMLDivElement>(null);
 
 	const imgStyle: any = { objectFit: 'cover', opacity: update ? 0 : 1 };
 	if (direction === 'column') {
@@ -112,6 +111,18 @@ export const Photo: FC<PhotoProps> = ({
 		onClick(event, { photo, index });
 	};
 
+	const handleBeforeLoad = () => {
+		if (removeIconRef.current) {
+			removeIconRef.current.style.display = 'none';
+		}
+	};
+
+	const handleAfterLoad = () => {
+		if (removeIconRef.current) {
+			removeIconRef.current.style.display = 'block';
+		}
+	};
+
 	return (
 		<div
 			className="photo-div"
@@ -121,6 +132,7 @@ export const Photo: FC<PhotoProps> = ({
 			{master && (
 				<RemoveImgIcon
 					photoRef={photoRef}
+					removeIconRef={removeIconRef}
 					imageName={photo.name}
 					imageList={imageList}
 				/>
@@ -132,6 +144,8 @@ export const Photo: FC<PhotoProps> = ({
 				onClick={onClick ? handleClick : null}
 				alt="img"
 				effect="opacity"
+				beforeLoad={handleBeforeLoad}
+				afterLoad={handleAfterLoad}
 			/>
 		</div>
 	);

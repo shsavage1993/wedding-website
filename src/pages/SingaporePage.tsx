@@ -2,14 +2,20 @@ import React from 'react';
 import { FC, useContext } from 'react';
 import { SgpContext } from '../App';
 import { CityPageTemplate } from '../components/CityPageTemplate';
+import { usePreloadImages } from '../components/usePreloadImages';
 import Image from 'react-bootstrap/Image';
+import latternImg from '../images/lattern-illustration.png';
 import singaporeLogo from '../images/singapore-small.png';
 import singaporeLogoColour from '../images/singapore-small-colour.png';
 
 export const SingaporePage: FC = () => {
 	const sgp = useContext(SgpContext);
 
-	if (sgp) {
+	const imageSources = [latternImg, singaporeLogo, singaporeLogoColour];
+
+	const imgsLoaded = usePreloadImages(imageSources);
+
+	if (sgp && imgsLoaded) {
 		return (
 			<CityPageTemplate>
 				<h1

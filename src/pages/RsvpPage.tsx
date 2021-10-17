@@ -6,12 +6,8 @@ import { RsvpForm } from '../components/RsvpForm';
 import { useHistory } from 'react-router-dom';
 import { MotionDiv } from '../components/MotionDiv';
 import { ConditionalWrapper } from '../components/ConditionalWrapper';
-
-// interface RsvpPageProps {
-// 	scrollToForm: boolean;
-// }
-
-// export const RsvpPage: FC<RsvpPageProps> = ({ scrollToForm }) => {
+import { usePreloadImages } from '../components/usePreloadImages';
+import teaImg from '../images/tea-illustration.png';
 
 export const RsvpPage: FC = () => {
 	const code = useContext(CodeContext);
@@ -27,7 +23,11 @@ export const RsvpPage: FC = () => {
 		scrollToForm = false;
 	}
 
-	return (
+	const imageSources = [teaImg];
+
+	const imgsLoaded = usePreloadImages(imageSources);
+
+	const rsvpPage = (
 		// if not scrolling to form, add page transition
 		<ConditionalWrapper
 			condition={!scrollToForm}
@@ -38,4 +38,6 @@ export const RsvpPage: FC = () => {
 			</RsvpTemplate>
 		</ConditionalWrapper>
 	);
+
+	return imgsLoaded ? rsvpPage : null;
 };

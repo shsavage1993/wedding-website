@@ -2,14 +2,20 @@ import React from 'react';
 import { FC, useContext } from 'react';
 import { CphContext } from '../App';
 import { CityPageTemplate } from '../components/CityPageTemplate';
+import { usePreloadImages } from '../components/usePreloadImages';
 import Image from 'react-bootstrap/Image';
+import latternImg from '../images/lattern-illustration.png';
 import copenhagenLogo from '../images/copenhagen-small-clipped.png';
 import copenhagenLogoColour from '../images/copenhagen-small-clipped-colour.png';
 
 export const CopenhagenPage: FC = () => {
 	const cph = useContext(CphContext);
 
-	if (cph) {
+	const imageSources = [latternImg, copenhagenLogo, copenhagenLogoColour];
+
+	const imgsLoaded = usePreloadImages(imageSources);
+
+	if (cph && imgsLoaded) {
 		return (
 			<CityPageTemplate>
 				<h1

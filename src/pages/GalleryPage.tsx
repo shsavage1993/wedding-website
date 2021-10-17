@@ -10,7 +10,7 @@ import { useGalleryListen } from '../components/useGalleryListen';
 import { ImgListValues } from '../model/types';
 import ResizeObserver from 'rc-resize-observer';
 
-const master = true;
+const master = false;
 
 export const GalleryPage: FC = () => {
 	const [imageList, setImageList] = useState<ImgListValues[]>([]);

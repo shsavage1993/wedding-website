@@ -5,11 +5,16 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import welcomeImg from '../images/welcome-illustration.png';
-import logo from '../images/logo-seal-red.png';
 import { CityLogoLinks } from '../components/CityLogoLinks';
 import { CodeInput } from '../components/CodeInput';
 import { MotionDiv } from '../components/MotionDiv';
+import { usePreloadImages } from '../components/usePreloadImages';
+import welcomeImg from '../images/welcome-illustration.png';
+import logo from '../images/logo-seal-red.png';
+import singaporeLogo from '../images/singapore-small.png';
+import singaporeLogoColour from '../images/singapore-small-colour.png';
+import copenhagenLogo from '../images/copenhagen-small-clipped.png';
+import copenhagenLogoColour from '../images/copenhagen-small-clipped-colour.png';
 
 export const HomePage: FC = () => {
 	const sgp = useContext(SgpContext);
@@ -23,7 +28,18 @@ export const HomePage: FC = () => {
 		component = <CodeInput />;
 	}
 
-	return (
+	const imageSources = [
+		welcomeImg,
+		logo,
+		singaporeLogo,
+		copenhagenLogo,
+		singaporeLogoColour,
+		copenhagenLogoColour,
+	];
+
+	const imgsLoaded = usePreloadImages(imageSources);
+
+	const homePage = (
 		<MotionDiv>
 			<Container fluid className="h-100" style={{ marginTop: '76px' }}>
 				<Row>
@@ -68,4 +84,6 @@ export const HomePage: FC = () => {
 			</Container>
 		</MotionDiv>
 	);
+
+	return imgsLoaded ? homePage : null;
 };
