@@ -40,7 +40,7 @@ export const NavBar: FC = () => {
 		boxShadow: `0px 0px 10px ${master ? '' : 'white'}`,
 	};
 
-	if (signedIn || sgp || cph) {
+	if ((master && signedIn) || sgp || cph) {
 		// if current location is rsvp page and state is present (i.e. it has come from rsvp success/failed), update location descriptor to prevent rsvp link from being clickable (since we are already on rsvp page)
 		const rsvpTo =
 			location.pathname === `/${code}/rsvp` && location.state
