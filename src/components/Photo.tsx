@@ -8,7 +8,7 @@ import removeIcon from '../images/cancel_white_24dp.svg';
 import { getNewImageOrder } from '../functions/getNewImageOrder';
 import { ImgListValues } from '../model/types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+import './lazy-load-image-background-effect.css';
 
 const imgWithClick = { cursor: 'pointer' };
 
@@ -30,7 +30,6 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 			removeIconRef.current.style.display = 'none';
 		}
 		if (photoRef.current) {
-			console.log(photoRef.current);
 			photoRef.current.style.filter = 'grayscale(100%)';
 		}
 

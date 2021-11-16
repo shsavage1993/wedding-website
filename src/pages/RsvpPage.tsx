@@ -1,12 +1,12 @@
 import React from 'react';
 import { FC, useContext } from 'react';
 import { CodeContext } from '../App';
+import { LoadPage } from '../components/LoadPage';
 import { RsvpTemplate } from '../components/RsvpTemplate';
 import { RsvpForm } from '../components/RsvpForm';
 import { useHistory } from 'react-router-dom';
 import { MotionDiv } from '../components/MotionDiv';
 import { ConditionalWrapper } from '../components/ConditionalWrapper';
-import { usePreloadImages } from '../components/usePreloadImages';
 import teaImg from '../images/tea-illustration.png';
 
 export const RsvpPage: FC = () => {
@@ -25,8 +25,6 @@ export const RsvpPage: FC = () => {
 
 	const imageSources = [teaImg];
 
-	const imgsLoaded = usePreloadImages(imageSources);
-
 	const rsvpPage = (
 		// if not scrolling to form, add page transition
 		<ConditionalWrapper
@@ -39,5 +37,5 @@ export const RsvpPage: FC = () => {
 		</ConditionalWrapper>
 	);
 
-	return imgsLoaded ? rsvpPage : null;
+	return <LoadPage imageSources={imageSources} page={rsvpPage} />;
 };

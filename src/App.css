@@ -37,6 +37,25 @@ html {
 	}
 }
 
+.xs-master-seal {
+	width: 150px;
+	margin-right: 2%;
+}
+
+@media (min-width: 576px) {
+	.sm-master-seal {
+		width: 75%;
+		max-width: 190px;
+		margin-right: 4%;
+	}
+}
+
+@media (min-width: 576px) {
+	.sm-master-login-input {
+		width: 290px;
+	}
+}
+
 .xs-logo-seal {
 	width: calc(4.6rem + 12.5%);
 }
@@ -97,6 +116,14 @@ div:hover > div > .city-logo-top {
 
 .pageContainer {
 	height: calc(100% - 76px);
+}
+
+.MuiLinearProgress-barColorPrimary {
+	background-color: var(--primary) !important;
+}
+
+.MuiLinearProgress-colorPrimary {
+	background-color: #d18484 !important;
 }
 
 /* Extra Small <576px

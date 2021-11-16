@@ -24,11 +24,41 @@
 	height: 60px;
 }
 
-.nav-link:hover {
+.nav-link-general:hover {
 	color: var(--primary) !important;
 }
 
-.nav-link.active {
+.nav-link-general.active {
 	-webkit-text-stroke: 0.5px var(--primary);
 	color: var(--primary) !important;
+}
+
+.nav-link-master:hover {
+	color: white !important;
+}
+
+.nav-link-master.active {
+	-webkit-text-stroke: 0.5px white;
+	color: white !important;
+}
+
+.nav-link-signout {
+	background-color: #750000;
+	cursor: pointer;
+	/* min-width: 75%; */
+}
+
+.nav-link-signout .nav-link {
+	color: #fbfbfb !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav-link-signout:hover {
+	background-color: var(--primary);
+}
+
+.nav-link-signout:active {
+	background-color: #750000;
 }

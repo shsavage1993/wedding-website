@@ -1,6 +1,7 @@
 import React from 'react';
 import { FC, useContext } from 'react';
 import { SgpContext, CphContext } from '../App';
+import { LoadPage } from '../components/LoadPage';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +9,6 @@ import Image from 'react-bootstrap/Image';
 import { CityLogoLinks } from '../components/CityLogoLinks';
 import { CodeInput } from '../components/CodeInput';
 import { MotionDiv } from '../components/MotionDiv';
-import { usePreloadImages } from '../components/usePreloadImages';
 import welcomeImg from '../images/welcome-illustration.png';
 import logo from '../images/logo-seal-red.png';
 import singaporeLogo from '../images/singapore-small.png';
@@ -36,8 +36,6 @@ export const HomePage: FC = () => {
 		singaporeLogoColour,
 		copenhagenLogoColour,
 	];
-
-	const imgsLoaded = usePreloadImages(imageSources);
 
 	const homePage = (
 		<MotionDiv>
@@ -85,5 +83,5 @@ export const HomePage: FC = () => {
 		</MotionDiv>
 	);
 
-	return imgsLoaded ? homePage : null;
+	return <LoadPage imageSources={imageSources} page={homePage} />;
 };

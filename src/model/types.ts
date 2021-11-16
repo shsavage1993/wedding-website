@@ -9,6 +9,10 @@ export interface FormValues {
 	other: string;
 }
 
+export interface RsvpListValues extends FormValues {
+	id: string;
+}
+
 export interface ImgListValues {
 	name: string;
 	src: string;

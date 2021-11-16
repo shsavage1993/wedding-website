@@ -9,9 +9,9 @@ export const CodeInput: FC = () => {
 	const inputElement = useRef<HTMLInputElement>(null);
 	const [input, setInput] = useState('');
 	const [error, setError] = useState(false);
-	const codes = ['sgp', 'cph', 'all'];
+	const codes = ['master', 'YS25q', '0eBAB', 'Moy0a']; // ['master', 'sgp', 'cph', 'all']
 
-	const buttonType = !error ? 'primary' : 'danger';
+	const buttonType = !error ? 'dark' : 'danger';
 	const buttonText = !error ? 'Enter' : 'Invalid Code';
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

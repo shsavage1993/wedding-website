@@ -17,7 +17,7 @@ export const RsvpFormOther: FC<RsvpFormOtherProps> = ({
 		<Row className="mb-2">
 			<Form.Group as={Col} controlId="formOther">
 				<Form.Label>
-					<h5>Anything Else</h5>
+					<h5>Additional Information</h5>
 				</Form.Label>
 				<Form.Control
 					as="textarea"

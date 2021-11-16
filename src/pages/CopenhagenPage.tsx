@@ -1,22 +1,22 @@
 import React from 'react';
 import { FC, useContext } from 'react';
-import { CphContext } from '../App';
+import { CodeContext, CphContext } from '../App';
+import { LoadPage } from '../components/LoadPage';
 import { CityPageTemplate } from '../components/CityPageTemplate';
-import { usePreloadImages } from '../components/usePreloadImages';
 import Image from 'react-bootstrap/Image';
 import latternImg from '../images/lattern-illustration.png';
 import copenhagenLogo from '../images/copenhagen-small-clipped.png';
 import copenhagenLogoColour from '../images/copenhagen-small-clipped-colour.png';
+import { Redirect } from 'react-router';
 
 export const CopenhagenPage: FC = () => {
+	const code = useContext(CodeContext);
 	const cph = useContext(CphContext);
 
 	const imageSources = [latternImg, copenhagenLogo, copenhagenLogoColour];
 
-	const imgsLoaded = usePreloadImages(imageSources);
-
-	if (cph && imgsLoaded) {
-		return (
+	if (cph) {
+		const copenhagenPage = (
 			<CityPageTemplate>
 				<h1
 					className="pt-2 xs-ballet-program lg-ballet-program msg-wrapper"
@@ -103,7 +103,9 @@ export const CopenhagenPage: FC = () => {
 				</h6>
 			</CityPageTemplate>
 		);
+
+		return <LoadPage imageSources={imageSources} page={copenhagenPage} />;
 	} else {
-		return null;
+		return <Redirect to={`/${code}`} />;
 	}
 };

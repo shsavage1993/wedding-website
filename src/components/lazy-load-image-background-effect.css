@@ -1,0 +1,44 @@
+.lazy-load-image-background.opacity {
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-name: sk_animation;
+	animation-timing-function: linear;
+	background: #f6f7f8;
+	background: linear-gradient(to right, #eee 8%, #ddd 18%, #eee 33%);
+	background-size: 800px 104px;
+	position: relative;
+	/* margin-bottom: 10px; */
+}
+
+@keyframes sk_animation {
+	0% {
+		background-position: -468px 0;
+	}
+	100% {
+		background-position: 468px 0;
+	}
+}
+
+@-webkit-keyframes sk_animation {
+	0% {
+		background-position: -468px 0;
+	}
+	100% {
+		background-position: 468px 0;
+	}
+}
+
+.lazy-load-image-background.opacity.lazy-load-image-loaded {
+	background: none !important;
+	transition: background 1s;
+}
+
+.lazy-load-image-background.opacity > img {
+	opacity: 0 !important;
+}
+
+.lazy-load-image-background.opacity.lazy-load-image-loaded > img {
+	opacity: 1 !important;
+	transition: opacity 1s;
+}

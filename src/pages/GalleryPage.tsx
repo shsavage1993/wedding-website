@@ -10,9 +10,11 @@ import { useGalleryListen } from '../components/useGalleryListen';
 import { ImgListValues } from '../model/types';
 import ResizeObserver from 'rc-resize-observer';
 
-const master = false;
+interface GalleryPageProps {
+	master?: boolean;
+}
 
-export const GalleryPage: FC = () => {
+export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 	const [imageList, setImageList] = useState<ImgListValues[]>([]);
 	const [update, setUpdate] = useState<boolean>(false);
 	const gridRef = useRef<HTMLDivElement>(null);

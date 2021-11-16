@@ -16,8 +16,6 @@ import { FormValues } from '../model/types';
 import { db } from '../firebase/config';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-// import axios from 'axios';
-
 interface FormType {
 	formValues: FormValues;
 }
@@ -132,7 +130,7 @@ export const RsvpForm: FC = () => {
 						handleChange={handleChange}
 					/>
 
-					<Button className="mt-4" type="submit">
+					<Button className="mt-4" type="submit" variant="dark">
 						Submit
 					</Button>
 				</Form>

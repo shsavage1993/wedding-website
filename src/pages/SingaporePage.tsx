@@ -1,22 +1,22 @@
 import React from 'react';
 import { FC, useContext } from 'react';
-import { SgpContext } from '../App';
+import { CodeContext, SgpContext } from '../App';
+import { LoadPage } from '../components/LoadPage';
 import { CityPageTemplate } from '../components/CityPageTemplate';
-import { usePreloadImages } from '../components/usePreloadImages';
 import Image from 'react-bootstrap/Image';
 import latternImg from '../images/lattern-illustration.png';
 import singaporeLogo from '../images/singapore-small.png';
 import singaporeLogoColour from '../images/singapore-small-colour.png';
+import { Redirect } from 'react-router';
 
 export const SingaporePage: FC = () => {
+	const code = useContext(CodeContext);
 	const sgp = useContext(SgpContext);
 
-	const imageSources = [latternImg, singaporeLogo, singaporeLogoColour];
+	if (sgp) {
+		const imageSources = [latternImg, singaporeLogo, singaporeLogoColour];
 
-	const imgsLoaded = usePreloadImages(imageSources);
-
-	if (sgp && imgsLoaded) {
-		return (
+		const singaporePage = (
 			<CityPageTemplate>
 				<h1
 					className="pt-2 xs-ballet-program lg-ballet-program msg-wrapper"
@@ -144,7 +144,9 @@ export const SingaporePage: FC = () => {
 				</h6>
 			</CityPageTemplate>
 		);
+
+		return <LoadPage imageSources={imageSources} page={singaporePage} />;
 	} else {
-		return null;
+		return <Redirect to={`/${code}`} />;
 	}
 };
