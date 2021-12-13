@@ -33,7 +33,6 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 			photoRef.current.style.filter = 'grayscale(100%)';
 		}
 
-		// TODO: Create confirmation modal
 		// clone imageList to modify it
 		const imgList = [...imageList];
 		const selectedImg = (img: ImgListValues) => img.name === imageName;

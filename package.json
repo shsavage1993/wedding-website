@@ -4,6 +4,9 @@
 	"private": true,
 	"dependencies": {
 		"@material-ui/core": "^4.12.3",
+		"@material-ui/icons": "^4.11.2",
+		"@material-ui/lab": "^4.0.0-alpha.60",
+		"@mui/x-data-grid": "^4.0.2",
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^12.8.3",
@@ -17,6 +20,7 @@
 		"firebase": "^9.1.2",
 		"formik": "^2.2.9",
 		"framer-motion": "^4.1.17",
+		"libphonenumber-js": "^1.9.43",
 		"rc-resize-observer": "^1.0.1",
 		"react": "^16.14.0",
 		"react-bootstrap": "^2.0.0-rc.0",

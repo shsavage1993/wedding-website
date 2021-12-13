@@ -11,7 +11,9 @@ import { getNewImageOrder } from '../functions/getNewImageOrder';
 
 interface ImageGridProps {
 	imageList: ImgListValues[];
-	setImageList: React.Dispatch<React.SetStateAction<ImgListValues[]>>;
+	setImageList: React.Dispatch<
+		React.SetStateAction<ImgListValues[] | undefined>
+	>;
 	master: boolean;
 	update: boolean;
 	setUpdate: React.Dispatch<React.SetStateAction<boolean>>;

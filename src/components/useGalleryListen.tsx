@@ -6,30 +6,30 @@ import { getImageList } from '../functions/getImageList';
 import { ImgListValues } from '../model/types';
 
 export const useGalleryListen = (
-	setImageList: React.Dispatch<React.SetStateAction<ImgListValues[]>>
+	setImageList: React.Dispatch<
+		React.SetStateAction<ImgListValues[] | undefined>
+	>
 ) => {
 	useEffect(() => {
 		const unsub = onSnapshot(
 			doc(db, 'images', 'order'),
 			async (doc: any) => {
-				try {
-					// get image order
-					const imgOrderObj = await doc.data();
-					// if document is not found, set to empty state
-					let imgCustomOrder = imgOrderObj
-						? imgOrderObj.customOrder
-						: [];
+				// get image order
+				const imgOrderObj = await doc.data();
+				// if document is not found, set to empty state
+				let imgCustomOrder = imgOrderObj ? imgOrderObj.customOrder : [];
 
-					// get image list
-					const imgList = await getImageList(imgCustomOrder);
+				// get image list
+				const imgList = await getImageList(imgCustomOrder);
 
-					setImageList(imgList);
-				} catch (err) {
-					console.log(err);
-				}
+				setImageList(imgList);
+			},
+			(error) => {
+				console.log(error);
 			}
 		);
 
 		return () => unsub();
-	}, [setImageList]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 };

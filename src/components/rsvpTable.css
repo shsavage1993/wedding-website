@@ -1,0 +1,118 @@
+div[class^='Mui'] * {
+	font-family: 'Noto Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+		'Helvetica Neue', sans-serif;
+}
+
+.MuiFormLabel-root.Mui-focused,
+.MuiSwitch-colorPrimary.Mui-checked,
+.MuiGridPanel-root .MuiButton-textPrimary,
+.MuiCheckbox-colorPrimary.Mui-checked,
+.MuiCheckbox-colorSecondary.Mui-checked,
+.MuiCircularProgress-colorPrimary {
+	color: var(--primary) !important;
+}
+
+.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track,
+.MuiBadge-colorPrimary {
+	background-color: var(--primary) !important;
+}
+
+.MuiInput-underline:after {
+	border-bottom-color: var(--primary) !important;
+}
+
+.MuiBadge-badge {
+	height: 16px !important;
+	padding: 0 0px !important;
+	min-width: 15px !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+	font-weight: 600 !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+	padding: 0 2px !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell {
+	position: relative;
+	padding: 0 12px !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeader:focus,
+.MuiDataGrid-root .MuiDataGrid-cell:focus,
+.MuiDataGrid-root .MuiDataGrid-cell.MuiDataGrid-cell--editing:focus-within {
+	outline: solid var(--primary) 1px !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell:focus-within {
+	outline: none !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-row.Mui-selected {
+	background-color: rgba(152, 0, 0, 0.08) !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell.MuiDataGrid-cell--editing {
+	padding: 0 12px !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-editInputCell input {
+	height: auto !important;
+	padding: 0 !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-row--editing {
+	/* box-shadow: none !important; */
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within {
+	outline: none !important;
+}
+
+.MuiAlert-message {
+	display: flex;
+	align-items: center;
+	padding: 3px 0 0 !important;
+}
+
+.MuiButton-text {
+	padding: 3px 8px 0px !important;
+}
+
+.MuiButton-label {
+	align-items: start !important;
+}
+
+.MuiButton-iconSizeSmall .MuiSvgIcon-root {
+	font-size: 1.2rem;
+}
+
+.MuiDataGrid-toolbarContainer .MuiButton-textPrimary {
+	color: var(--primary);
+}
+
+.MuiButton-textPrimary .MuiButton-iconSizeSmall > *:first-child {
+	font-size: 20px !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-footerContainer {
+	border-top: 1px solid rgba(224, 224, 224, 1);
+}
+
+.MuiDataGrid-root .MuiDataGrid-footerContainer,
+.MuiTablePagination-toolbar {
+	min-height: 0px !important;
+}
+
+div.MuiDataGrid-row--deleted
+	div.MuiDataGrid-cell:not([data-field='action']):before {
+	content: ' ';
+	position: absolute;
+	top: calc(50% - 1px);
+	left: 10px;
+	border-bottom: 2px solid #111;
+	width: calc(100% - 20px);
+}
