@@ -3,6 +3,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@material-ui/core": "^4.12.3",
+		"@material-ui/icons": "^4.11.2",
+		"@material-ui/lab": "^4.0.0-alpha.60",
+		"@mui/x-data-grid": "^4.0.2",
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^12.8.3",
@@ -16,9 +20,12 @@
 		"firebase": "^9.1.2",
 		"formik": "^2.2.9",
 		"framer-motion": "^4.1.17",
+		"libphonenumber-js": "^1.9.43",
+		"rc-resize-observer": "^1.0.1",
 		"react": "^16.14.0",
 		"react-bootstrap": "^2.0.0-rc.0",
 		"react-dom": "^16.14.0",
+		"react-lazy-load-image-component": "^1.5.1",
 		"react-phone-input-2": "^2.14.0",
 		"react-photo-gallery": "^8.0.0",
 		"react-router-bootstrap": "^0.25.0",
@@ -35,7 +42,7 @@
 		"build": "react-scripts build",
 		"build:dev": "env-cmd -f .env.development npm run build",
 		"build:prod": "env-cmd -f .env.production npm run build",
-		"deploy:local": "./deploy.sh",
+		"deploy:local": "sh ./deploy.sh",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
@@ -58,6 +65,7 @@
 		]
 	},
 	"devDependencies": {
+		"@types/react-lazy-load-image-component": "^1.5.2",
 		"@types/react-router-bootstrap": "^0.24.5",
 		"@types/react-router-dom": "^5.1.8"
 	}

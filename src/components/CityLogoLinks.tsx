@@ -44,7 +44,7 @@ export const CityLogoLinks: FC = () => {
 						/>
 					</div>
 					<h6 className="m-0">Singapore</h6>
-					<Countdown date="04/23/2022" />
+					<Countdown date="04/23/2022 00:00:00 +0800" />
 				</div>
 			</LinkContainer>
 		);
@@ -76,7 +76,7 @@ export const CityLogoLinks: FC = () => {
 						/>
 					</div>
 					<h6 className="m-0">Copenhagen</h6>
-					<Countdown date="05/21/2022" />
+					<Countdown date="05/21/2022 00:00:00 +0200" />
 				</div>
 			</LinkContainer>
 		);

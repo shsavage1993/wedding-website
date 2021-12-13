@@ -10,6 +10,7 @@ html {
 
 ::-webkit-scrollbar {
 	-webkit-appearance: none;
+	height: 8px;
 	width: 8px;
 }
 
@@ -19,8 +20,8 @@ html {
 	-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-main {
-	display: block !important;
+#main {
+	visibility: visible !important;
 }
 
 @media (min-width: 768px) {
@@ -34,6 +35,25 @@ main {
 		position: sticky;
 		top: 76px;
 		height: calc(100vh - 76px) !important;
+	}
+}
+
+.xs-master-seal {
+	width: 150px;
+	margin-right: 2%;
+}
+
+@media (min-width: 576px) {
+	.sm-master-seal {
+		width: 75%;
+		max-width: 190px;
+		margin-right: 4%;
+	}
+}
+
+@media (min-width: 576px) {
+	.sm-master-login-input {
+		width: 290px;
 	}
 }
 
@@ -97,6 +117,14 @@ div:hover > div > .city-logo-top {
 
 .pageContainer {
 	height: calc(100% - 76px);
+}
+
+.MuiLinearProgress-barColorPrimary {
+	background-color: var(--primary) !important;
+}
+
+.MuiLinearProgress-colorPrimary {
+	background-color: #d18484 !important;
 }
 
 /* Extra Small <576px

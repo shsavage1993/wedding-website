@@ -12,13 +12,14 @@
 }
 
 .file-input-label {
-	display: block;
+	display: flex;
 	width: 30px;
 	height: 30px;
 	border: 1px solid var(--primary);
 	border-radius: 50%;
 	margin: 10px auto;
-	line-height: 23px;
+	align-items: center;
+	justify-content: center;
 	color: var(--primary);
 	font-weight: bold;
 	font-size: 24px;
@@ -49,11 +50,10 @@
 
 /* image grid styles */
 .remove-img-icon {
-	/* display: none; */
 	right: 13px;
 	top: 12px;
 	position: absolute;
-	zindex: 1;
+	z-index: 1;
 }
 
 .remove-img-icon-img {

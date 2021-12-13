@@ -23,7 +23,9 @@ export const RsvpSuccessPage: FC = () => {
 					state: { from: window.location.pathname },
 				}}
 			>
-				<Button className="mt-4">Back</Button>
+				<Button className="mt-4" variant="dark">
+					Back
+				</Button>
 			</LinkContainer>
 		</RsvpTemplate>
 	);

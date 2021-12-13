@@ -9,11 +9,19 @@ export interface FormValues {
 	other: string;
 }
 
+export interface RsvpListValues extends FormValues {
+	id: string;
+	createdAt: number;
+}
+
+export interface RsvpEdits {
+	[id: string]: Partial<FormValues>;
+}
+
 export interface ImgListValues {
 	name: string;
 	src: string;
 	timestamp: number;
 	width: number;
 	height: number;
-	loading: string;
 }

@@ -47,7 +47,9 @@ export const RsvpErrorPage: FC = () => {
 				Please try again or contact us directly.
 			</h6>
 			<LinkContainer exact to={rsvpTo}>
-				<Button className="mt-4">Back</Button>
+				<Button className="mt-4" variant="dark">
+					Back
+				</Button>
 			</LinkContainer>
 		</RsvpTemplate>
 	);

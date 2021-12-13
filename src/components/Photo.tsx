@@ -1,5 +1,5 @@
 import React from 'react';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import { db, storage } from '../firebase/config';
 import { ref, deleteObject } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
@@ -7,22 +7,32 @@ import { deleteDoc } from 'firebase/firestore';
 import removeIcon from '../images/cancel_white_24dp.svg';
 import { getNewImageOrder } from '../functions/getNewImageOrder';
 import { ImgListValues } from '../model/types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import './lazy-load-image-background-effect.css';
 
 const imgWithClick = { cursor: 'pointer' };
 
 interface RemoveImgIconProps {
+	photoRef: React.RefObject<HTMLDivElement>;
+	removeIconRef: React.RefObject<HTMLDivElement>;
 	imageName: string;
 	imageList: ImgListValues[];
-	// setImageList: React.Dispatch<React.SetStateAction<ImgListValues[]>>;
 }
 
 const RemoveImgIcon: FC<RemoveImgIconProps> = ({
+	photoRef,
+	removeIconRef,
 	imageName,
 	imageList,
-	// setImageList,
 }) => {
 	const handleRemoveImgIconClick = async (event: any) => {
-		// TODO: Create confirmation modal
+		if (removeIconRef.current) {
+			removeIconRef.current.style.display = 'none';
+		}
+		if (photoRef.current) {
+			photoRef.current.style.filter = 'grayscale(100%)';
+		}
+
 		// clone imageList to modify it
 		const imgList = [...imageList];
 		const selectedImg = (img: ImgListValues) => img.name === imageName;
@@ -30,8 +40,6 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 		if (index > -1) {
 			imgList.splice(index, 1);
 		}
-
-		// setImageList(imgList)
 
 		const newImageOrder = getNewImageOrder(imgList);
 
@@ -51,7 +59,7 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 	};
 
 	return (
-		<div className="remove-img-icon">
+		<div ref={removeIconRef} className="remove-img-icon">
 			<img
 				className="remove-img-icon-img"
 				src={removeIcon}
@@ -72,6 +80,7 @@ interface PhotoProps {
 	left?: any;
 	imageList: ImgListValues[];
 	master: boolean;
+	update: boolean;
 }
 
 export const Photo: FC<PhotoProps> = ({
@@ -84,8 +93,12 @@ export const Photo: FC<PhotoProps> = ({
 	left,
 	imageList,
 	master,
+	update,
 }) => {
-	const imgStyle: any = { margin: margin, objectFit: 'cover' };
+	const photoRef = useRef<HTMLDivElement>(null);
+	const removeIconRef = useRef<HTMLDivElement>(null);
+
+	const imgStyle: any = { objectFit: 'cover', opacity: update ? 0 : 1 };
 	if (direction === 'column') {
 		imgStyle.position = 'absolute';
 		imgStyle.left = left;
@@ -96,17 +109,41 @@ export const Photo: FC<PhotoProps> = ({
 		onClick(event, { photo, index });
 	};
 
+	const handleBeforeLoad = () => {
+		if (removeIconRef.current) {
+			removeIconRef.current.style.display = 'none';
+		}
+	};
+
+	const handleAfterLoad = () => {
+		if (removeIconRef.current) {
+			removeIconRef.current.style.display = 'block';
+		}
+	};
+
 	return (
-		<div className="photo-div" style={{ position: 'relative' }}>
+		<div
+			className="photo-div"
+			style={{ margin: margin, position: 'relative' }}
+			ref={photoRef}
+		>
 			{master && (
-				<RemoveImgIcon imageName={photo.name} imageList={imageList} />
+				<RemoveImgIcon
+					photoRef={photoRef}
+					removeIconRef={removeIconRef}
+					imageName={photo.name}
+					imageList={imageList}
+				/>
 			)}
-			<img
+			<LazyLoadImage
 				className="photo"
 				style={onClick ? { ...imgStyle, ...imgWithClick } : imgStyle}
 				{...photo}
 				onClick={onClick ? handleClick : null}
 				alt="img"
+				effect="opacity"
+				beforeLoad={handleBeforeLoad}
+				afterLoad={handleAfterLoad}
 			/>
 		</div>
 	);

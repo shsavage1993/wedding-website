@@ -11,36 +11,28 @@ import { getNewImageOrder } from '../functions/getNewImageOrder';
 
 interface ImageGridProps {
 	imageList: ImgListValues[];
-	setImageList: React.Dispatch<React.SetStateAction<ImgListValues[]>>;
+	setImageList: React.Dispatch<
+		React.SetStateAction<ImgListValues[] | undefined>
+	>;
 	master: boolean;
+	update: boolean;
+	setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const ImageGrid: FC<ImageGridProps> = ({
 	imageList,
 	setImageList,
 	master,
+	update,
+	setUpdate,
 }) => {
-	// const [items, setItems] = useState<
-	// 	{
-	// 		src: string;
-	// 		width: number;
-	// 		height: number;
-	// 	}[]
-	// >([]);
-
-	// useEffect(() => {
-	// 	const imgList = imageList.map((image) => ({
-	// 		name: image.name,
-	// 		src: image.url,
-	// 		width: 1,
-	// 		height: 1,
-	// 	}));
-
-	// 	setItems(imgList);
-	// }, [imageList]);
-
 	const SortablePhoto = SortableElement((item: any) => (
-		<Photo imageList={imageList} master={master} {...item} />
+		<Photo
+			imageList={imageList}
+			update={update}
+			master={master}
+			{...item}
+		/>
 	));
 	const SortableGallery = SortableContainer(({ items }: any) => (
 		<Gallery
@@ -54,10 +46,12 @@ export const ImageGrid: FC<ImageGridProps> = ({
 	));
 
 	const onSortEnd = async ({ oldIndex, newIndex }: any) => {
+		if (oldIndex === newIndex) {
+			return null;
+		}
+		setUpdate(true);
 		const newImageList = arrayMoveImmutable(imageList, oldIndex, newIndex);
-		setImageList(newImageList);
 		const newImageOrder = getNewImageOrder(newImageList);
-		console.log(newImageOrder);
 
 		try {
 			// Update document "images/order"
@@ -75,23 +69,7 @@ export const ImageGrid: FC<ImageGridProps> = ({
 			onSortEnd={onSortEnd}
 			axis={'xy'}
 			distance={1}
+			disableAutoscroll={true}
 		/>
-
-		// <Gallery
-		// 	photos={imgList}
-		// 	margin={8}
-		// 	renderImage={(props) => <Photo {...props} />}
-		// />
-
-		// <div className="img-grid">
-		// 	{imageList.map((image) => (
-		// 		<div
-		// 			className="img-wrap"
-		// 			key={image.name}
-		// 		>
-		// 			<img src={image.src} alt={image.name} />
-		// 		</div>
-		// 	))}
-		// </div>
 	);
 };

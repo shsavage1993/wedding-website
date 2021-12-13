@@ -31,6 +31,13 @@ export const UploadPhoto: FC<UploadPhotoProps> = ({ imageList }) => {
 		}
 	};
 
+	const clickHandler = (
+		event: React.MouseEvent<HTMLInputElement, MouseEvent>
+	) => {
+		const element = event.target as HTMLInputElement;
+		element.value = '';
+	};
+
 	const { file, progress } = useUploadImage(imgFiles, setImgFiles);
 
 	return (
@@ -41,6 +48,7 @@ export const UploadPhoto: FC<UploadPhotoProps> = ({ imageList }) => {
 					type="file"
 					multiple
 					onChange={changeHandler}
+					onClick={clickHandler}
 				/>
 				<span>+</span>
 			</label>

@@ -1,16 +1,22 @@
 import React from 'react';
 import { FC, useContext } from 'react';
-import { CphContext } from '../App';
+import { CodeContext, CphContext } from '../App';
+import { LoadPage } from '../components/LoadPage';
 import { CityPageTemplate } from '../components/CityPageTemplate';
 import Image from 'react-bootstrap/Image';
+import latternImg from '../images/lattern-illustration.png';
 import copenhagenLogo from '../images/copenhagen-small-clipped.png';
 import copenhagenLogoColour from '../images/copenhagen-small-clipped-colour.png';
+import { Redirect } from 'react-router';
 
 export const CopenhagenPage: FC = () => {
+	const code = useContext(CodeContext);
 	const cph = useContext(CphContext);
 
+	const imageSources = [latternImg, copenhagenLogo, copenhagenLogoColour];
+
 	if (cph) {
-		return (
+		const copenhagenPage = (
 			<CityPageTemplate>
 				<h1
 					className="pt-2 xs-ballet-program lg-ballet-program msg-wrapper"
@@ -28,7 +34,14 @@ export const CopenhagenPage: FC = () => {
 					<br />
 					Time: 18:00 - 03:00
 					<br />
-					Venue: Villa Copenhagen
+					Venue:{' '}
+					<a
+						href="https://www.google.com/maps/place/Villa+Copenhagen/@55.6714149,12.5676969,15z/data=!4m8!3m7!1s0x0:0x93c823393bdc1527!5m2!4m1!1i2!8m2!3d55.6714149!4d12.5676969"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Villa Copenhagen
+					</a>
 					<br />
 					Dresscode: Black Tie
 				</h5>
@@ -90,7 +103,9 @@ export const CopenhagenPage: FC = () => {
 				</h6>
 			</CityPageTemplate>
 		);
+
+		return <LoadPage imageSources={imageSources} page={copenhagenPage} />;
 	} else {
-		return null;
+		return <Redirect to={`/${code}`} />;
 	}
 };
