@@ -16,13 +16,23 @@ interface GalleryPageProps {
 
 export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 	const [loading, setLoading] = useState(true);
-	const [update, setUpdate] = useState<boolean>(false);
+	const [update, setUpdate] = useState<boolean>(true);
 	const gridRef = useRef<HTMLDivElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
 
 	// listens to changes in gallery
 	const imageList = useGalleryListen();
 
 	const images = imageList ? imageList! : [];
+	const [heightOffset, setHeightOffset] = useState<number | undefined>(
+		undefined
+	);
+
+	useEffect(() => {
+		if (divRef.current && !heightOffset) {
+			setHeightOffset(divRef.current.clientHeight);
+		}
+	}, [update, heightOffset]);
 
 	useEffect(() => {
 		imageList ? setLoading(false) : setLoading(true);
@@ -37,11 +47,11 @@ export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 				) : (
 					<div className="gallery-subsection"></div>
 				)}
-				<div style={{ position: 'relative' }}>
+				<div ref={divRef} style={{ position: 'relative' }}>
 					<ResizeObserver
 						onResize={({ height }) => {
-							if (gridRef.current && height !== 23) {
-								// ignore when height is 23 (happens during update)
+							if (gridRef.current && height !== heightOffset) {
+								// ignore when height is 24 (happens during update)
 								gridRef.current.style.height = `${height}px`;
 								setUpdate(false);
 							}
