@@ -1,15 +1,14 @@
-import React from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { getImageList } from '../functions/getImageList';
 import { ImgListValues } from '../model/types';
 
-export const useGalleryListen = (
-	setImageList: React.Dispatch<
-		React.SetStateAction<ImgListValues[] | undefined>
-	>
-) => {
+export const useGalleryListen = () => {
+	const [imageList, setImageList] = useState<ImgListValues[] | undefined>(
+		undefined
+	);
+
 	useEffect(() => {
 		const unsub = onSnapshot(
 			doc(db, 'images', 'order'),
@@ -20,9 +19,9 @@ export const useGalleryListen = (
 				let imgCustomOrder = imgOrderObj ? imgOrderObj.customOrder : [];
 
 				// get image list
-				const imgList = await getImageList(imgCustomOrder);
+				const imageList = await getImageList(imgCustomOrder);
 
-				setImageList(imgList);
+				setImageList(imageList);
 			},
 			(error) => {
 				console.log(error);
@@ -30,6 +29,7 @@ export const useGalleryListen = (
 		);
 
 		return () => unsub();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	return imageList;
 };

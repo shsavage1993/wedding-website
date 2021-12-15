@@ -8,7 +8,6 @@ import { LinearProgress } from '@material-ui/core';
 import { UploadPhoto } from '../components/UploadPhoto';
 import { ImageGrid } from '../components/ImageGrid';
 import { useGalleryListen } from '../components/useGalleryListen';
-import { ImgListValues } from '../model/types';
 import ResizeObserver from 'rc-resize-observer';
 
 interface GalleryPageProps {
@@ -17,23 +16,16 @@ interface GalleryPageProps {
 
 export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 	const [loading, setLoading] = useState(true);
-	const [imageList, setImageList] = useState<ImgListValues[] | undefined>(
-		undefined
-	);
 	const [update, setUpdate] = useState<boolean>(false);
 	const gridRef = useRef<HTMLDivElement>(null);
 
+	// listens to changes in gallery
+	const imageList = useGalleryListen();
+
 	const images = imageList ? imageList! : [];
 
-	// listens to changes in gallery
-	useGalleryListen(setImageList);
-
 	useEffect(() => {
-		const loadingToggle = () => {
-			imageList ? setLoading(false) : setLoading(true);
-		};
-
-		return loadingToggle();
+		imageList ? setLoading(false) : setLoading(true);
 	}, [imageList]);
 
 	const gallery = (
@@ -57,7 +49,6 @@ export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 					>
 						<ImageGrid
 							imageList={images}
-							setImageList={setImageList}
 							master={master}
 							update={update}
 							setUpdate={setUpdate}
