@@ -1,6 +1,7 @@
 import React from 'react';
 import { FC, useContext } from 'react';
 import { CodeContext } from '../App';
+import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as formik from 'formik';
@@ -93,7 +94,14 @@ export const RsvpForm: FC = () => {
 				errors,
 			}) => (
 				<Form noValidate onSubmit={handleSubmit}>
-					<h1 className="mb-4">RSVP</h1>
+					<h1 className="mb-3">RSVP</h1>
+
+					<Row className="mb-4">
+						<Form.Text className="d-block text-muted">
+							All data submitted is confidential and will only be
+							used in for the sole purpose of this event
+						</Form.Text>
+					</Row>
 
 					<RsvpFormName
 						values={values}

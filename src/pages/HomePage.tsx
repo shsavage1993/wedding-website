@@ -15,6 +15,7 @@ import singaporeLogo from '../images/singapore-small.png';
 import singaporeLogoColour from '../images/singapore-small-colour.png';
 import copenhagenLogo from '../images/copenhagen-small-clipped.png';
 import copenhagenLogoColour from '../images/copenhagen-small-clipped-colour.png';
+import { CovidDisclaimer } from '../components/CovidDisclaimer';
 
 export const HomePage: FC = () => {
 	const sgp = useContext(SgpContext);
@@ -23,7 +24,12 @@ export const HomePage: FC = () => {
 	let component;
 
 	if (sgp || cph) {
-		component = <CityLogoLinks />;
+		component = (
+			<>
+				<CovidDisclaimer />
+				<CityLogoLinks />
+			</>
+		);
 	} else {
 		component = <CodeInput />;
 	}
