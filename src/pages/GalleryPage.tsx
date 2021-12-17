@@ -40,7 +40,7 @@ export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 
 	const gallery = (
 		<Container fluid className="h-100" style={{ marginTop: '76px' }}>
-			<Col className="p-5">
+			<Col className="px-3 py-5 col-sm-gallery">
 				<h1 style={{ textAlign: 'center' }}>Gallery</h1>
 				{master ? (
 					<UploadPhoto imageList={images} />

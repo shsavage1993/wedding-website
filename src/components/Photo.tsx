@@ -70,14 +70,13 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 	);
 };
 
-interface PhotoProps {
-	index: any;
+export interface PhotoProps {
+	index: number;
 	onClick: any;
 	photo: any;
-	margin?: any;
-	direction: any;
-	top?: any;
-	left?: any;
+	margin?: string;
+	top?: number;
+	left?: number;
 	imageList: ImgListValues[];
 	master: boolean;
 	update: boolean;
@@ -88,7 +87,6 @@ export const Photo: FC<PhotoProps> = ({
 	onClick,
 	photo,
 	margin,
-	direction,
 	top,
 	left,
 	imageList,
@@ -99,13 +97,8 @@ export const Photo: FC<PhotoProps> = ({
 	const removeIconRef = useRef<HTMLDivElement>(null);
 
 	const imgStyle: any = { objectFit: 'cover', opacity: update ? 0 : 1 };
-	if (direction === 'column') {
-		imgStyle.position = 'absolute';
-		imgStyle.left = left;
-		imgStyle.top = top;
-	}
 
-	const handleClick = (event: any) => {
+	const handleClick = (event: React.MouseEvent<Element, MouseEvent>) => {
 		onClick(event, { photo, index });
 	};
 

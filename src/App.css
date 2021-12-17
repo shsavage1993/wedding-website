@@ -25,6 +25,12 @@ html {
 }
 
 @media (min-width: 768px) {
+	.col-sm-gallery {
+		padding: 3rem !important;
+	}
+}
+
+@media (min-width: 768px) {
 	.col-md-illustration {
 		height: calc((100vmax - 76px) / 2) !important;
 	}

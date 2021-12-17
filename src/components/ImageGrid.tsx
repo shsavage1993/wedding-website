@@ -1,6 +1,6 @@
 import React from 'react';
 import { FC } from 'react';
-import Gallery from 'react-photo-gallery';
+import { MemoizedGallery } from './Gallery';
 import { arrayMoveImmutable } from 'array-move';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { Photo } from './Photo';
@@ -31,10 +31,14 @@ export const ImageGrid: FC<ImageGridProps> = ({
 		/>
 	));
 	const SortableGallery = SortableContainer(({ items }: any) => (
-		<Gallery
+		<MemoizedGallery
 			photos={items}
 			// limitNodeSearch={(width) => Math.floor(width / 100)}
-			margin={8}
+			margin={2}
+			targetRowHeight={(width) =>
+				width <= 600 ? 150 : width <= 1015 ? 200 : 250
+			}
+			minColumns={(width) => (width <= 240 ? 1 : width <= 600 ? 2 : 3)}
 			renderImage={(props) => (
 				<SortablePhoto {...props} disabled={!master} />
 			)}
@@ -64,7 +68,7 @@ export const ImageGrid: FC<ImageGridProps> = ({
 			items={imageList}
 			onSortEnd={onSortEnd}
 			axis={'xy'}
-			distance={1}
+			distance={1} // elements to only become sortable after being dragged a certain number of pixels
 			disableAutoscroll={true}
 		/>
 	);
