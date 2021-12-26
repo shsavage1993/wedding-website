@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import * as formik from 'formik';
-import { FormValues } from '../model/types';
+import { FormValues } from '../model/rsvpTypes';
 
 interface RsvpFormEmailProps {
 	values: FormValues;

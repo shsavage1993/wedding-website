@@ -1,8 +1,8 @@
 import React from 'react';
 import { FC } from 'react';
 import { usePreloadImages } from '../components/usePreloadImages';
-import { LinearProgress } from '@material-ui/core';
 import { motion } from 'framer-motion';
+import { Loader } from './Loader';
 
 interface LoadPageProps {
 	imageSources: string[];
@@ -20,11 +20,7 @@ export const LoadPage: FC<LoadPageProps> = ({ imageSources, page }) => {
 			animate={{ opacity: 1 }}
 			transition={{ delay: 0.4 }}
 		>
-			<LinearProgress
-				style={{
-					marginTop: '76px',
-				}}
-			/>
+			<Loader />
 		</motion.div>
 	);
 };

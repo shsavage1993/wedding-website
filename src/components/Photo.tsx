@@ -6,7 +6,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { deleteDoc } from 'firebase/firestore';
 import removeIcon from '../images/cancel_white_24dp.svg';
 import { getNewImageOrder } from '../functions/getNewImageOrder';
-import { ImgListValues } from '../model/types';
+import { ImgListValues } from '../model/galleryTypes';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './lazy-load-image-background-effect.css';
 
@@ -15,14 +15,14 @@ const imgWithClick = { cursor: 'pointer' };
 interface RemoveImgIconProps {
 	photoRef: React.RefObject<HTMLDivElement>;
 	removeIconRef: React.RefObject<HTMLDivElement>;
-	imageName: string;
+	imageId: string;
 	imageList: ImgListValues[];
 }
 
 const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 	photoRef,
 	removeIconRef,
-	imageName,
+	imageId,
 	imageList,
 }) => {
 	const handleRemoveImgIconClick = async (event: any) => {
@@ -35,7 +35,8 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 
 		// clone imageList to modify it
 		const imgList = [...imageList];
-		const selectedImg = (img: ImgListValues) => img.name === imageName;
+		// get index of image in imageList
+		const selectedImg = (img: ImgListValues) => img.id === imageId;
 		const index = imgList.findIndex(selectedImg);
 		if (index > -1) {
 			imgList.splice(index, 1);
@@ -44,15 +45,17 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 		const newImageOrder = getNewImageOrder(imgList);
 
 		try {
-			// Delete image from storage
-			const imgRef = ref(storage, imageName);
-			await deleteObject(imgRef);
-			// Delete document for associated image from db
-			await deleteDoc(doc(db, 'images', imageName));
-			// Update document "images/order"
-			await setDoc(doc(db, 'images', 'order'), {
-				customOrder: newImageOrder,
-			});
+			// Delete image document from firestore
+			await deleteDoc(doc(db, 'images', imageId));
+
+			await Promise.all([
+				// Delete image from storage
+				deleteObject(ref(storage, imageId)),
+				// Update document "images/order"
+				setDoc(doc(db, 'images', 'order'), {
+					customOrder: newImageOrder,
+				}),
+			]);
 		} catch (err) {
 			console.error(err);
 		}
@@ -70,14 +73,13 @@ const RemoveImgIcon: FC<RemoveImgIconProps> = ({
 	);
 };
 
-interface PhotoProps {
-	index: any;
+export interface PhotoProps {
+	index: number;
 	onClick: any;
 	photo: any;
-	margin?: any;
-	direction: any;
-	top?: any;
-	left?: any;
+	margin?: string;
+	top?: number;
+	left?: number;
 	imageList: ImgListValues[];
 	master: boolean;
 	update: boolean;
@@ -88,7 +90,6 @@ export const Photo: FC<PhotoProps> = ({
 	onClick,
 	photo,
 	margin,
-	direction,
 	top,
 	left,
 	imageList,
@@ -98,14 +99,9 @@ export const Photo: FC<PhotoProps> = ({
 	const photoRef = useRef<HTMLDivElement>(null);
 	const removeIconRef = useRef<HTMLDivElement>(null);
 
-	const imgStyle: any = { objectFit: 'cover', opacity: update ? 0 : 1 };
-	if (direction === 'column') {
-		imgStyle.position = 'absolute';
-		imgStyle.left = left;
-		imgStyle.top = top;
-	}
+	const imgStyle: any = { objectFit: 'cover' };
 
-	const handleClick = (event: any) => {
+	const handleClick = (event: React.MouseEvent<Element, MouseEvent>) => {
 		onClick(event, { photo, index });
 	};
 
@@ -124,14 +120,19 @@ export const Photo: FC<PhotoProps> = ({
 	return (
 		<div
 			className="photo-div"
-			style={{ margin: margin, position: 'relative' }}
+			style={{
+				margin: margin,
+				position: 'relative',
+				opacity: update ? 0.2 : 1,
+				// visibility: update ? 'hidden' : 'visible',
+			}}
 			ref={photoRef}
 		>
 			{master && (
 				<RemoveImgIcon
 					photoRef={photoRef}
 					removeIconRef={removeIconRef}
-					imageName={photo.name}
+					imageId={photo.id}
 					imageList={imageList}
 				/>
 			)}
