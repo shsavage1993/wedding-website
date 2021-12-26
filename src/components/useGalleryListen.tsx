@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
-import { doc, onSnapshot } from 'firebase/firestore';
+import {
+	doc,
+	DocumentData,
+	DocumentSnapshot,
+	onSnapshot,
+} from 'firebase/firestore';
 import { getImageList } from '../functions/getImageList';
-import { ImgListValues } from '../model/types';
+import { ImgListValues } from '../model/galleryTypes';
 
-export const useGalleryListen = () => {
+export const useGalleryListen = (master: boolean) => {
 	const [imageList, setImageList] = useState<ImgListValues[] | undefined>(
 		undefined
 	);
@@ -12,14 +17,16 @@ export const useGalleryListen = () => {
 	useEffect(() => {
 		const unsub = onSnapshot(
 			doc(db, 'images', 'order'),
-			async (doc: any) => {
+			async (doc: DocumentSnapshot<DocumentData>) => {
 				// get image order
-				const imgOrderObj = await doc.data();
+				const imgOrderObj = doc.data();
 				// if document is not found, set to empty state
-				let imgCustomOrder = imgOrderObj ? imgOrderObj.customOrder : [];
+				const imgCustomOrder: string[] = imgOrderObj
+					? imgOrderObj.customOrder
+					: [];
 
 				// get image list
-				const imageList = await getImageList(imgCustomOrder);
+				const imageList = await getImageList(master, imgCustomOrder);
 
 				setImageList(imageList);
 			},
@@ -29,7 +36,7 @@ export const useGalleryListen = () => {
 		);
 
 		return () => unsub();
-	}, []);
+	}, [master]);
 
 	return imageList;
 };

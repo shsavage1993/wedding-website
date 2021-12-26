@@ -17,11 +17,3 @@ export interface RsvpListValues extends FormValues {
 export interface RsvpEdits {
 	[id: string]: Partial<FormValues>;
 }
-
-export interface ImgListValues {
-	name: string;
-	src: string;
-	timestamp: number;
-	width: number;
-	height: number;
-}

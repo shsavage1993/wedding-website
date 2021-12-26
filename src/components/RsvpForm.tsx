@@ -13,7 +13,7 @@ import { RsvpFormPhone } from './RsvpFormPhone';
 import { RsvpFormAttending } from './RsvpFormAttending';
 import { RsvpFormDietraryReq } from './RsvpFormDietaryReq';
 import { RsvpFormOther } from './RsvpFormOther';
-import { FormValues } from '../model/types';
+import { FormValues } from '../model/rsvpTypes';
 import { db } from '../firebase/config';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 

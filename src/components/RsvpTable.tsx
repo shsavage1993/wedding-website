@@ -22,7 +22,7 @@ import {
 	GridCellEditCommitParams,
 	GridCellParams,
 } from '@mui/x-data-grid';
-import { RsvpListValues, RsvpEdits } from '../model/types';
+import { RsvpListValues, RsvpEdits } from '../model/rsvpTypes';
 import { useRsvpListen } from './useRsvpListen';
 import { db } from '../firebase/config';
 import { doc, updateDoc, deleteDoc } from 'firebase/firestore';

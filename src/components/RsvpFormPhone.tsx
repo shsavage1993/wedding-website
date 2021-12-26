@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import PhoneInput from 'react-phone-input-2';
 import '../components/PhoneInput.css';
-import { FormValues } from '../model/types';
+import { FormValues } from '../model/rsvpTypes';
 import * as formik from 'formik';
 
 interface RsvpFormPhoneProps {

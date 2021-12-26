@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { RsvpListValues } from '../model/types';
+import { RsvpListValues } from '../model/rsvpTypes';
 
 export const useRsvpListen = () => {
 	const [rsvpList, setRsvpList] = useState<RsvpListValues[] | undefined>(

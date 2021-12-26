@@ -1,15 +1,15 @@
 import React from 'react';
 import { FC, useState } from 'react';
 import { useUploadImage } from './useUploadImage';
-import { ProgressBar } from './ProgressBar';
-import { ImgListValues } from '../model/types';
+// import { ProgressBar } from './ProgressBar';
+import LinearProgress, {
+	LinearProgressProps,
+} from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Alert from 'react-bootstrap/Alert';
 
-interface UploadPhotoProps {
-	imageList: ImgListValues[];
-}
-
-export const UploadPhoto: FC<UploadPhotoProps> = ({ imageList }) => {
+export const UploadPhoto: FC = () => {
 	const [imgFiles, setImgFiles] = useState<File[]>([]);
 	const [nonImgFiles, setNonImgFiles] = useState<File[]>([]);
 
@@ -49,6 +49,7 @@ export const UploadPhoto: FC<UploadPhotoProps> = ({ imageList }) => {
 					multiple
 					onChange={changeHandler}
 					onClick={clickHandler}
+					disabled={imgFiles.length > 0}
 				/>
 				<span>+</span>
 			</label>
@@ -68,7 +69,10 @@ export const UploadPhoto: FC<UploadPhotoProps> = ({ imageList }) => {
 						dismissible
 						onClose={() => setNonImgFiles(nonImgFiles.slice(0, -1))}
 					>
-						{file.name + 'is not an image file (png or jpeg)'}
+						<span>
+							<b>{file.name}</b>&ensp;is not an image file (png or
+							jpeg)
+						</span>
 					</Alert>
 				))}
 				{nonImgFiles.length > 0 && (
@@ -77,8 +81,31 @@ export const UploadPhoto: FC<UploadPhotoProps> = ({ imageList }) => {
 					</div>
 				)}
 				{file && <div>{file.name}</div>}
-				{file && <ProgressBar progress={progress} />}
+				{file && (
+					<LinearProgressWithLabel
+						style={{ height: '5px' }}
+						// variant="determinate"
+						value={progress}
+					/>
+				)}
 			</div>
 		</form>
 	);
 };
+
+function LinearProgressWithLabel(
+	props: LinearProgressProps & { value: number }
+) {
+	return (
+		<Box display="flex" alignItems="center">
+			<Box width="100%" mr={1}>
+				<LinearProgress variant="determinate" {...props} />
+			</Box>
+			<Box minWidth={35}>
+				<Typography variant="body2">{`${Math.round(
+					props.value
+				)}%`}</Typography>
+			</Box>
+		</Box>
+	);
+}

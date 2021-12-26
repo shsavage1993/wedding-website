@@ -3,7 +3,7 @@ import { FC } from 'react';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { FormValues } from '../model/types';
+import { FormValues } from '../model/rsvpTypes';
 
 interface RsvpFormOtherProps {
 	values: FormValues;

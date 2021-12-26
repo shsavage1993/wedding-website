@@ -2,39 +2,7 @@ import React, { FC, useState, useLayoutEffect, useRef } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { Photo } from './Photo';
 import { computeGalleryLayout } from '../functions/computeGalleryLayout';
-import {
-	PhotoProps,
-	PhotoClickHandler,
-	renderImageClickHandler,
-} from 'react-photo-gallery';
-
-interface GalleryProps {
-	photos: PhotoProps[];
-	onClick?: PhotoClickHandler<{}> | undefined;
-	margin?: number | ((containerWidth: number) => number) | undefined;
-	targetRowHeight?: number | ((containerWidth: number) => number) | undefined;
-	minColumns?: number | ((containerWidth: number) => number) | undefined;
-	renderImage?: React.ComponentType<RenderImageProps<{}>> | undefined;
-}
-
-interface RenderImageProps<CustomPhotoProps extends object = {}> {
-	/**
-	 * margin prop optionally passed into Gallery by user
-	 */
-	margin?: string;
-	/**
-	 * the index of the photo within the Gallery
-	 */
-	index: number;
-	/**
-	 * the individual object passed into Gallery's
-	 * photos array prop, with all the same props except recalculated height and width
-	 */
-	photo: PhotoProps<CustomPhotoProps>;
-	onClick: renderImageClickHandler | null;
-	top?: number;
-	left?: number;
-}
+import { GalleryProps } from '../model/galleryTypes';
 
 const Gallery: FC<GalleryProps> = ({
 	photos,

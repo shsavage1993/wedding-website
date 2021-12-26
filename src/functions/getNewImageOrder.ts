@@ -1,30 +1,16 @@
-// import { ImgListValues } from '../model/types';
+import { ImgListValues } from '../model/galleryTypes';
 
 export const getNewImageOrder = (
-	imageList: { name: string }[],
-	file: File | null = null
+	imageList: ImgListValues[],
+	id: string | null = null
 ) => {
-	// get list of image file names
-	let imageNameList = imageList.map((i) => i.name);
+	// get list of image IDs
+	const imageIdList = imageList.map((i) => i.id);
 
-	if (file) {
-		// Remove new image from list if it already exists
-		const index = imageNameList.indexOf(file.name);
-		if (index > -1) {
-			imageNameList.splice(index, 1);
-		}
-
+	if (id) {
 		// Add new image to custom ordered image list
-		imageNameList.unshift(file.name);
+		imageIdList.unshift(id);
 	}
 
-	// update alphabetically ordered image list
-	const imageNameListAlpha = [...imageNameList].sort();
-
-	//Reverse transformation
-	const newImageOrder = imageNameList.map((i) =>
-		imageNameListAlpha.indexOf(i)
-	);
-
-	return newImageOrder;
+	return imageIdList;
 };

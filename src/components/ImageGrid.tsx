@@ -6,11 +6,12 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import { Photo } from './Photo';
 import { db } from '../firebase/config';
 import { doc, setDoc } from 'firebase/firestore';
-import { ImgListValues } from '../model/types';
+import { ImgListValues } from '../model/galleryTypes';
 import { getNewImageOrder } from '../functions/getNewImageOrder';
 
 interface ImageGridProps {
 	imageList: ImgListValues[];
+	setImageList: React.Dispatch<React.SetStateAction<ImgListValues[]>>;
 	master: boolean;
 	update: boolean;
 	setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +19,7 @@ interface ImageGridProps {
 
 export const ImageGrid: FC<ImageGridProps> = ({
 	imageList,
+	setImageList,
 	master,
 	update,
 	setUpdate,
@@ -51,8 +53,9 @@ export const ImageGrid: FC<ImageGridProps> = ({
 		}
 		setUpdate(true);
 		const newImageList = arrayMoveImmutable(imageList, oldIndex, newIndex);
-		const newImageOrder = getNewImageOrder(newImageList);
+		setImageList(newImageList);
 
+		const newImageOrder = getNewImageOrder(newImageList);
 		try {
 			// Update document "images/order"
 			await setDoc(doc(db, 'images', 'order'), {
@@ -61,6 +64,8 @@ export const ImageGrid: FC<ImageGridProps> = ({
 		} catch (err) {
 			console.error(err);
 		}
+
+		setUpdate(false);
 	};
 
 	return (

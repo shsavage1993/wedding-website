@@ -1,41 +1,51 @@
-import '../components/gallery.css';
 import React from 'react';
 import { FC, useState, useEffect, useRef } from 'react';
 import { MotionDiv } from '../components/MotionDiv';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import { LinearProgress } from '@material-ui/core';
 import { UploadPhoto } from '../components/UploadPhoto';
 import { ImageGrid } from '../components/ImageGrid';
 import { useGalleryListen } from '../components/useGalleryListen';
 import ResizeObserver from 'rc-resize-observer';
+import { ImgListValues } from '../model/galleryTypes';
+import { Loader } from '../components/Loader';
+import '../components/gallery.css';
 
 interface GalleryPageProps {
 	master?: boolean;
 }
 
+function getStringifiedImgIdList(imageList: ImgListValues[]) {
+	const imgIdList = imageList.map((img) => img.id);
+	return JSON.stringify(imgIdList);
+}
+
 export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
-	const [loading, setLoading] = useState(true);
-	const [update, setUpdate] = useState<boolean>(true);
 	const gridRef = useRef<HTMLDivElement>(null);
 	const divRef = useRef<HTMLDivElement>(null);
-
-	// listens to changes in gallery
-	const imageList = useGalleryListen();
-
-	const images = imageList ? imageList! : [];
-	const [heightOffset, setHeightOffset] = useState<number | undefined>(
+	const [loading, setLoading] = useState(true);
+	const [update, setUpdate] = useState<boolean>(false);
+	const [heightOffset, setHeightOffset] = useState<number | undefined>( // for ResizeObserver
 		undefined
 	);
 
-	useEffect(() => {
-		if (divRef.current && !heightOffset) {
-			setHeightOffset(divRef.current.clientHeight);
-		}
-	}, [update, heightOffset]);
+	// listens to changes in gallery
+	const imageList = useGalleryListen(master);
+	const [gridImageList, setGridImageList] = useState<ImgListValues[]>([]);
 
 	useEffect(() => {
-		imageList ? setLoading(false) : setLoading(true);
+		if (imageList) {
+			if (
+				getStringifiedImgIdList(imageList) !==
+				getStringifiedImgIdList(gridImageList)
+			) {
+				setGridImageList(imageList);
+			}
+			setLoading(false);
+		} else {
+			setLoading(true);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageList]);
 
 	const gallery = (
@@ -43,7 +53,7 @@ export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 			<Col className="px-3 py-5 col-sm-gallery">
 				<h1 style={{ textAlign: 'center' }}>Gallery</h1>
 				{master ? (
-					<UploadPhoto imageList={images} />
+					<UploadPhoto />
 				) : (
 					<div className="gallery-subsection"></div>
 				)}
@@ -51,15 +61,20 @@ export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 					<ResizeObserver
 						onResize={({ height }) => {
 							if (gridRef.current && height !== heightOffset) {
-								// ignore when height is 24 (happens during update)
+								// ignore when height is heightOffset (height during update)
 								gridRef.current.style.height = `${height}px`;
-								setUpdate(false);
+								if (divRef.current && !heightOffset) {
+									setHeightOffset(
+										divRef.current.clientHeight
+									);
+								}
 							}
 						}}
 					>
 						<ImageGrid
-							imageList={images}
-							master={master}
+							imageList={gridImageList}
+							setImageList={setGridImageList}
+							master={master && !update}
 							update={update}
 							setUpdate={setUpdate}
 						/>
@@ -81,13 +96,10 @@ export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 		</Container>
 	);
 
-	const loader = (
-		<LinearProgress
-			style={{
-				marginTop: '76px',
-			}}
-		/>
+	return (
+		<MotionDiv>
+			{loading || update ? <Loader /> : null}
+			{loading ? null : gallery}
+		</MotionDiv>
 	);
-
-	return <MotionDiv>{loading ? loader : gallery}</MotionDiv>;
 };
