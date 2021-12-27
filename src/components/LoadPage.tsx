@@ -1,18 +1,24 @@
 import React from 'react';
 import { FC } from 'react';
-import { usePreloadImages } from '../components/usePreloadImages';
 import { motion } from 'framer-motion';
-import { Loader } from './Loader';
+import { LinearProgress } from '@material-ui/core';
+import { usePreloadImages } from '../components/usePreloadImages';
+// import { Loader } from './Loader';
 
 interface LoadPageProps {
-	imageSources: string[];
 	page: JSX.Element;
+	imageSources?: string[];
+	loading?: boolean;
 }
 
-export const LoadPage: FC<LoadPageProps> = ({ imageSources, page }) => {
+export const LoadPage: FC<LoadPageProps> = ({
+	page,
+	imageSources = [],
+	loading = false,
+}) => {
 	const imgsLoaded = usePreloadImages(imageSources);
 
-	return imgsLoaded ? (
+	return imgsLoaded && !loading ? (
 		page
 	) : (
 		<motion.div
@@ -22,5 +28,19 @@ export const LoadPage: FC<LoadPageProps> = ({ imageSources, page }) => {
 		>
 			<Loader />
 		</motion.div>
+	);
+};
+
+export const Loader: FC = () => {
+	return (
+		<LinearProgress
+			style={{
+				position: 'fixed',
+				top: 76,
+				zIndex: 2,
+				display: 'block',
+				width: '100%',
+			}}
+		/>
 	);
 };
