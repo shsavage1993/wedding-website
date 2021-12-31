@@ -40,6 +40,12 @@ export const GalleryCarousel: FC<GalleryCarouselProps> = ({
 
 	const images = photos.map((photo) => <CarouselSlide photo={photo} />);
 
+	document.addEventListener('keydown', function (event) {
+		if (show && event.key === 'Escape') {
+			handleClose();
+		}
+	});
+
 	return (
 		<Backdrop className={classes.backdrop + ' p-5'} open={show}>
 			<CloseButton
@@ -55,7 +61,7 @@ export const GalleryCarousel: FC<GalleryCarouselProps> = ({
 			<Carousel
 				className={classes.carousel}
 				selectedItem={selected} // default 0
-				autoFocus={true}
+				autoFocus={show}
 				autoPlay={false}
 				dynamicHeight={false} //
 				emulateTouch={true} //default true
