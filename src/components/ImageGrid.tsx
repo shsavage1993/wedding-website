@@ -92,7 +92,6 @@ export const ImageGrid: FC<ImageGridProps> = ({
 	}, []);
 
 	const closeCarousel = () => {
-		// setSelectedImage(0);
 		setCarouselIsOpen(false);
 		enableScroll();
 	};
