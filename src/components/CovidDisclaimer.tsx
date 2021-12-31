@@ -20,7 +20,8 @@ export const CovidDisclaimer: FC = () => {
 				Due to the ongoing coronavirus pandemic, we are obliged to place
 				the safety of our guests as our utmost priority. We would like
 				all guests to freely enjoy the celebrations without worry. As
-				such, we ask that all guests be fully vaccinated.
+				such, we ask that all guests follow governmental recommendations
+				and guidelines for event attendance.
 			</Modal.Body>
 		</Modal>
 	);

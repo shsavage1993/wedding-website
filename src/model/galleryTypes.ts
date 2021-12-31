@@ -8,6 +8,8 @@ export interface ImgListValues {
 
 export interface GalleryProps {
 	photos: PhotoProps[];
+	containerWidth: number;
+	setContainerWidth: React.Dispatch<React.SetStateAction<number>>;
 	onClick?: PhotoClickHandler<{}> | undefined;
 	margin?: number | ((containerWidth: number) => number) | undefined;
 	targetRowHeight?: number | ((containerWidth: number) => number) | undefined;
@@ -65,7 +67,7 @@ interface RenderImageProps<CustomPhotoProps extends object = {}> {
 	left?: number;
 }
 
-type PhotoClickHandler<CustomPhotoProps extends object = {}> = (
+export type PhotoClickHandler<CustomPhotoProps extends object = {}> = (
 	event: React.MouseEvent,
 	photos: {
 		index: number;

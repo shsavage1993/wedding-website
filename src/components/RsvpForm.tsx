@@ -99,7 +99,7 @@ export const RsvpForm: FC = () => {
 					<Row className="mb-4">
 						<Form.Text className="d-block text-muted">
 							All data submitted is confidential and will only be
-							used in for the sole purpose of this event
+							used for the sole purpose of this event.
 						</Form.Text>
 					</Row>
 

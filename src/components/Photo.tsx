@@ -119,12 +119,12 @@ export const Photo: FC<PhotoProps> = ({
 
 	return (
 		<div
+			key={photo.id}
 			className="photo-div"
 			style={{
 				margin: margin,
 				position: 'relative',
 				opacity: update ? 0.2 : 1,
-				// visibility: update ? 'hidden' : 'visible',
 			}}
 			ref={photoRef}
 		>
@@ -137,7 +137,6 @@ export const Photo: FC<PhotoProps> = ({
 				/>
 			)}
 			<LazyLoadImage
-				className="photo"
 				style={onClick ? { ...imgStyle, ...imgWithClick } : imgStyle}
 				{...photo}
 				onClick={onClick ? handleClick : null}
