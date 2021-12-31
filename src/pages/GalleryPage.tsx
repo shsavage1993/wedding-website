@@ -1,12 +1,11 @@
 import React from 'react';
-import { FC, useState, useEffect, useRef } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { MotionDiv } from '../components/MotionDiv';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import { UploadPhoto } from '../components/UploadPhoto';
-import { ImageGrid } from '../components/ImageGrid';
+import { MemoizedImageGrid } from '../components/ImageGrid';
 import { useGalleryListen } from '../components/useGalleryListen';
-import ResizeObserver from 'rc-resize-observer';
 import { ImgListValues } from '../model/galleryTypes';
 import { LoadPage, Loader } from '../components/LoadPage';
 import '../components/gallery.css';
@@ -21,13 +20,8 @@ function getStringifiedImgIdList(imageList: ImgListValues[]) {
 }
 
 export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
-	const gridRef = useRef<HTMLDivElement>(null);
-	const divRef = useRef<HTMLDivElement>(null);
 	const [loading, setLoading] = useState(true);
 	const [update, setUpdate] = useState<boolean>(false);
-	const [heightOffset, setHeightOffset] = useState<number | undefined>( // for ResizeObserver
-		undefined
-	);
 
 	// listens to changes in gallery
 	const imageList = useGalleryListen(master);
@@ -58,44 +52,13 @@ export const GalleryPage: FC<GalleryPageProps> = ({ master = false }) => {
 					) : (
 						<div className="gallery-subsection"></div>
 					)}
-					<div ref={divRef} style={{ position: 'relative' }}>
-						<ResizeObserver
-							onResize={({ height }) => {
-								if (
-									gridRef.current &&
-									height !== heightOffset
-								) {
-									// ignore when height is heightOffset (height during update)
-									gridRef.current.style.height = `${height}px`;
-									if (divRef.current && !heightOffset) {
-										setHeightOffset(
-											divRef.current.clientHeight
-										);
-									}
-								}
-							}}
-						>
-							<ImageGrid
-								imageList={gridImageList}
-								setImageList={setGridImageList}
-								master={master && !update}
-								update={update}
-								setUpdate={setUpdate}
-							/>
-						</ResizeObserver>
-						<div
-							ref={gridRef}
-							style={{
-								zIndex: -1,
-								background: 'transparent',
-								height: '0px',
-								width: '100%',
-								position: 'absolute',
-								top: 0,
-								left: 0,
-							}}
-						></div>
-					</div>
+					<MemoizedImageGrid
+						imageList={gridImageList}
+						setImageList={setGridImageList}
+						master={master && !update}
+						update={update}
+						setUpdate={setUpdate}
+					/>
 				</Col>
 			</Container>
 		</MotionDiv>

@@ -14,7 +14,7 @@ export const UploadPhoto: FC = () => {
 	const [nonImgFiles, setNonImgFiles] = useState<File[]>([]);
 
 	// only allow these image types
-	const types = ['image/png', 'image/jpeg'];
+	const types = ['image/png', 'image/jpeg', 'image/gif'];
 
 	const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let selected;

@@ -1,18 +1,19 @@
-import React, { FC, useState, useLayoutEffect, useRef } from 'react';
+import React, { FC, useLayoutEffect, useRef } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { Photo } from './Photo';
 import { computeGalleryLayout } from '../functions/computeGalleryLayout';
 import { GalleryProps } from '../model/galleryTypes';
 
-const Gallery: FC<GalleryProps> = ({
+export const Gallery: FC<GalleryProps> = ({
 	photos,
+	containerWidth,
+	setContainerWidth,
 	onClick,
 	margin,
 	targetRowHeight,
 	minColumns,
 	renderImage,
 }) => {
-	const [containerWidth, setContainerWidth] = useState(0);
 	const galleryEl = useRef(null);
 
 	useLayoutEffect(() => {
@@ -20,7 +21,7 @@ const Gallery: FC<GalleryProps> = ({
 		const observer = new ResizeObserver((entries) => {
 			// only do something if width changes
 			const newWidth = entries[0].contentRect.width;
-			if (containerWidth !== newWidth) {
+			if (newWidth !== 0 && containerWidth !== newWidth) {
 				// put in an animation frame to stop "benign errors" from
 				// ResizObserver https://stackoverflow.com/questions/49384120/resizeobserver-loop-limit-exceeded
 				animationFrameID = window.requestAnimationFrame(() => {
@@ -98,8 +99,6 @@ const Gallery: FC<GalleryProps> = ({
 		</div>
 	);
 };
-
-export const MemoizedGallery = React.memo(Gallery);
 
 Gallery.defaultProps = {
 	margin: 2,
