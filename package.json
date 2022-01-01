@@ -1,6 +1,6 @@
 {
 	"name": "wedding-website",
-	"version": "2.3",
+	"version": "2.4",
 	"private": true,
 	"dependencies": {
 		"@material-ui/core": "^4.12.3",
