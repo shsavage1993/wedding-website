@@ -38,7 +38,9 @@ export const GalleryCarousel: FC<GalleryCarouselProps> = ({
 }) => {
 	const classes = useStyles();
 
-	const images = photos.map((photo) => <CarouselSlide photo={photo} />);
+	const images = photos.map((photo) => (
+		<CarouselSlide key={photo.id} photo={photo} />
+	));
 
 	document.addEventListener('keydown', function (event) {
 		if (show && event.key === 'Escape') {
@@ -47,13 +49,16 @@ export const GalleryCarousel: FC<GalleryCarouselProps> = ({
 	});
 
 	return (
-		<Backdrop className={classes.backdrop + ' p-5'} open={show}>
+		<Backdrop
+			className={classes.backdrop + ' px-0 py-5 px-sm-5'}
+			open={show}
+		>
 			<CloseButton
 				style={{
 					position: 'absolute',
 					zIndex: 99,
-					top: 10,
-					right: 15,
+					top: 11,
+					right: 10,
 				}}
 				variant="white"
 				onClick={handleClose}
