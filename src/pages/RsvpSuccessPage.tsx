@@ -12,7 +12,7 @@ export const RsvpSuccessPage: FC = () => {
 		<RsvpTemplate scrollToCol2>
 			<h1 className="mb-4">Success!</h1>
 			<h6>
-				You response has been successfully recorded.
+				Your response has been successfully recorded.
 				<br />
 				We thank you and hope to see you soon!
 			</h6>
