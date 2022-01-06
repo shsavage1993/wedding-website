@@ -1,9 +1,3 @@
-div[class^='Mui'] * {
-	font-family: 'Noto Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-		'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-		'Helvetica Neue', sans-serif;
-}
-
 .MuiFormLabel-root.Mui-focused,
 .MuiSwitch-colorPrimary.Mui-checked,
 .MuiGridPanel-root .MuiButton-textPrimary,

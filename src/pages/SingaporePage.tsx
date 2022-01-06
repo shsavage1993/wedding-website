@@ -3,6 +3,7 @@ import { FC, useContext } from 'react';
 import { CodeContext, SgpContext } from '../App';
 import { LoadPage } from '../components/LoadPage';
 import { CityPageTemplate } from '../components/CityPageTemplate';
+import { RsvpButton } from '../components/RsvpButton';
 import Image from 'react-bootstrap/Image';
 import latternImg from '../images/lattern-illustration.png';
 import singaporeLogo from '../images/singapore-small.png';
@@ -43,10 +44,14 @@ export const SingaporePage: FC = () => {
 						Orchard Hotel Singapore
 					</a>
 					<br />
-					Dresscode: Cocktail
+					Dresscode: Formal/Cocktail
 				</h5>
 
 				<div className="py-2"></div>
+
+				<RsvpButton />
+
+				<div className="py-3"></div>
 
 				<div className="xs-city-logo-program sm-city-logo-program d-flex flex-column justify-content-center align-items-center">
 					<div
@@ -87,7 +92,7 @@ export const SingaporePage: FC = () => {
 				<div style={{ padding: '1.2rem' }}></div>
 
 				<h5 className="xs-h5 sm-h5">Fun Customs & Traditions:</h5>
-				<h6 className="xs-h6 sm-h6">
+				<h6 className="xs-h6 sm-h6" style={{ marginBottom: '0.3rem' }}>
 					<ul className="traditions-ul">
 						<li>
 							Red plays a vital role in Chinese weddings, as it is
@@ -128,7 +133,7 @@ export const SingaporePage: FC = () => {
 					</ul>
 				</h6>
 
-				<div style={{ padding: '1.1rem' }}></div>
+				{/* <div style={{ padding: '1.1rem' }}></div>
 
 				<h5 className="xs-h5 sm-h5">
 					<b>Covid guidance:</b>
@@ -141,7 +146,7 @@ export const SingaporePage: FC = () => {
 						fully vaccinated or recovered from COVID-19, or a child
 						aged 12 years or below.
 					</b>
-				</h6>
+				</h6> */}
 			</CityPageTemplate>
 		);
 

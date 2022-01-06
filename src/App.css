@@ -133,6 +133,15 @@ div:hover > div > .city-logo-top {
 	background-color: #9800002a !important;
 }
 
+a {
+	color: var(--primary);
+}
+
+/* mouse over link */
+a:hover {
+	color: #c50000;
+}
+
 /* Extra Small <576px
 Small 		≥576px
 Medium	 	≥768px

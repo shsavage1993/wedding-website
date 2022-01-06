@@ -3,6 +3,7 @@ import { FC, useContext } from 'react';
 import { CodeContext, CphContext } from '../App';
 import { LoadPage } from '../components/LoadPage';
 import { CityPageTemplate } from '../components/CityPageTemplate';
+import { RsvpButton } from '../components/RsvpButton';
 import Image from 'react-bootstrap/Image';
 import latternImg from '../images/lattern-illustration.png';
 import copenhagenLogo from '../images/copenhagen-small-clipped.png';
@@ -43,10 +44,14 @@ export const CopenhagenPage: FC = () => {
 						Villa Copenhagen
 					</a>
 					<br />
-					Dresscode: Black Tie
+					Dresscode: Formal/Cocktail
 				</h5>
 
-				<div className="py-1"></div>
+				<div className="py-2"></div>
+
+				<RsvpButton />
+
+				<div className="py-3"></div>
 
 				<div className="xs-city-logo-program sm-city-logo-program d-flex flex-column justify-content-center align-items-center">
 					<div
@@ -86,7 +91,7 @@ export const CopenhagenPage: FC = () => {
 					03:00: Carriages Home
 				</h5>
 
-				<div style={{ padding: '1.2rem' }}></div>
+				{/* <div style={{ padding: '1.2rem' }}></div>
 
 				<h5 className="xs-h5 sm-h5">
 					<b>Covid guidance:</b>
@@ -100,7 +105,7 @@ export const CopenhagenPage: FC = () => {
 						positive test taken between 14 days and 12 weeks ago).
 						For outdoor dining, a 'corona pass' is not required.
 					</b>
-				</h6>
+				</h6> */}
 			</CityPageTemplate>
 		);
 
