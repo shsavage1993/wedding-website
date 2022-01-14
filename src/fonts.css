@@ -128,6 +128,7 @@ code {
 
 .xs-h6 {
 	width: 97%;
+	max-width: 400px;
 	margin-top: -0.25rem;
 	text-align: justify;
 	line-height: 1.2rem;
@@ -137,6 +138,7 @@ code {
 @media (min-width: 576px) {
 	.sm-h6 {
 		width: 75%;
+		max-width: 600px;
 		/* margin-top: -0.25rem; */
 		text-align: justify;
 		line-height: 1.5rem;
@@ -152,7 +154,7 @@ code {
 }
 
 .traditions-ul li {
-	margin-bottom: 0.5rem;
+	margin-bottom: 1rem;
 }
 
 /* Extra Small <576px

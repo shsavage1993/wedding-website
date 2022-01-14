@@ -1,5 +1,5 @@
 import React from 'react';
-import { FC, useContext } from 'react';
+import { FC, useContext, useLayoutEffect, useRef } from 'react';
 import { CodeContext, CphContext } from '../App';
 import { LoadPage } from '../components/LoadPage';
 import { CityPageTemplate } from '../components/CityPageTemplate';
@@ -9,12 +9,45 @@ import latternImg from '../images/lattern-illustration.png';
 import copenhagenLogo from '../images/copenhagen-small-clipped.png';
 import copenhagenLogoColour from '../images/copenhagen-small-clipped-colour.png';
 import { Redirect } from 'react-router';
+import ResizeObserver from 'resize-observer-polyfill';
 
 export const CopenhagenPage: FC = () => {
 	const code = useContext(CodeContext);
 	const cph = useContext(CphContext);
+	const accountsRef = useRef<HTMLDivElement>(null);
 
 	const imageSources = [latternImg, copenhagenLogo, copenhagenLogoColour];
+
+	useLayoutEffect(() => {
+		const observer = new ResizeObserver((entries) => {
+			// only do something if width changes
+			const accountsDiv = accountsRef.current!;
+
+			const accountsWidth = entries[0].contentRect.width;
+			const dkkWidth =
+				accountsDiv.firstElementChild!.getBoundingClientRect().width;
+			const gbpWidth =
+				accountsDiv.lastElementChild!.getBoundingClientRect().width;
+
+			const dkkGbpWidth =
+				dkkWidth +
+				gbpWidth +
+				parseFloat(getComputedStyle(accountsDiv).columnGap);
+
+			if (accountsWidth >= dkkGbpWidth) {
+				accountsDiv.style.justifyContent = 'space-evenly';
+			} else {
+				accountsDiv.style.justifyContent = 'flex-start';
+			}
+		});
+		if (accountsRef.current) {
+			observer.observe(accountsRef.current);
+		}
+		return () => {
+			observer.disconnect();
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [accountsRef.current]);
 
 	if (cph) {
 		const copenhagenPage = (
@@ -90,6 +123,57 @@ export const CopenhagenPage: FC = () => {
 					<br />
 					03:00: Carriages Home
 				</h5>
+
+				<div style={{ padding: '1.2rem' }}></div>
+
+				<h5 className="xs-h5 sm-h5">Ønskeseddel:</h5>
+				<h6 className="xs-h6 sm-h6" style={{ marginBottom: '0.3rem' }}>
+					I stedet for en traditionel ønskeseddel, ønsker vi os penge,
+					hvilket følger traditionen i Singapore. Det har også den
+					praktiske vinkel at vi ubesværet kan få vores gaver med på
+					flyrejsen hjem til London.
+					<br />
+					<br />
+					Unfortunately, as we are no longer resident in Denmark, we
+					would like to follow the Singapore tradition of wedding
+					gifts in the form of red packets (money). We hope this will
+					help with the logistics and make things simpler for our
+					guests and ourselves.
+					<br />
+					<br />
+					Please find bank details below:
+					<br />
+					<br />
+					<div
+						ref={accountsRef}
+						style={{
+							display: 'flex',
+							justifyContent: 'space-evenly',
+							flexWrap: 'wrap',
+							columnGap: '2rem',
+							rowGap: '1rem',
+						}}
+					>
+						<div style={{ whiteSpace: 'nowrap' }}>
+							<b>DKK</b>
+							<br />
+							Michelle Savage
+							<br />
+							Sort Code: 0164
+							<br />
+							Account No: 6288478889
+						</div>
+						<div style={{ whiteSpace: 'nowrap' }}>
+							<b>GBP</b>
+							<br />
+							Michelle Savage
+							<br />
+							Sort Code: 40-17-10
+							<br />
+							Account No: 12220563
+						</div>
+					</div>
+				</h6>
 
 				{/* <div style={{ padding: '1.2rem' }}></div>
 
