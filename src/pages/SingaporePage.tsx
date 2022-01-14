@@ -97,32 +97,20 @@ export const SingaporePage: FC = () => {
 						<li>
 							Red plays a vital role in Chinese weddings, as it is
 							associated with success, loyalty, honor, fertility,
-							and love, amongst others. Because of this,
-							decorations at Chinese weddings are generally in
-							red, and so is the bride's dress.
+							and love. Decorations in the hall will usually
+							involve 囍 the "double joy" character, reserved
+							solely for matrimonial usage.
 						</li>
 						<li>
 							Before a Chinese wedding celebration, the groom will
-							often go to the bride's house to collect her. The
-							bride will be surrounded by a few of her
-							girlfriends, who will have to be bribed or convinced
-							before they will hand over the bride. Then, the
-							bride and groom will bow to the bride's parents
-							before going to the groom's house.
+							go to the bride's house and must complete a series
+							of challenges to win over the bridesmaids in order
+							to see his bride.
 						</li>
 						<li>
-							The tea ceremony is to honour parents and always
-							begins with prayer. The couple kneels on tea pillows
-							facing the parents and take turns serving tea to
-							each set of parents.
-						</li>
-						<li>
-							Decorations in the hall will usually involve 囍 the
-							"double joy" character, reserved solely for
-							matrimonial usage. Banners with wishes in various
-							different phrases will also be hung on the doors and
-							windows of the venue in order to wish the new couple
-							well.
+							The tea ceremony is to honour parents. The couple
+							kneels on tea pillows facing the parents and take
+							turns serving tea to each set of parents.
 						</li>
 						<li>
 							Visitors to the wedding will usually give a red
