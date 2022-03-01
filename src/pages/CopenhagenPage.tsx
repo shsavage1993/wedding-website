@@ -22,22 +22,28 @@ export const CopenhagenPage: FC = () => {
 		const observer = new ResizeObserver((entries) => {
 			// only do something if width changes
 			const accountsDiv = accountsRef.current!;
+			const dkkDiv = accountsDiv.firstElementChild! as HTMLElement;
+			const gbpDiv = accountsDiv.lastElementChild! as HTMLElement;
 
-			const accountsWidth = entries[0].contentRect.width;
-			const dkkWidth =
-				accountsDiv.firstElementChild!.getBoundingClientRect().width;
-			const gbpWidth =
-				accountsDiv.lastElementChild!.getBoundingClientRect().width;
+			const accountsDivWidth = entries[0].contentRect.width;
+			const dkkAccountWidth = dkkDiv.getBoundingClientRect().width;
+			const gbpAccountWidth = gbpDiv.getBoundingClientRect().width;
 
-			const dkkGbpWidth =
-				dkkWidth +
-				gbpWidth +
+			const accountsWidth =
+				dkkAccountWidth +
+				gbpAccountWidth +
 				parseFloat(getComputedStyle(accountsDiv).columnGap);
 
-			if (accountsWidth >= dkkGbpWidth) {
-				accountsDiv.style.justifyContent = 'space-evenly';
+			if (accountsDivWidth >= accountsWidth) {
+				// accountsDiv.style.justifyContent = 'space-evenly';
+				gbpDiv.style.width = 'auto';
+				dkkDiv.style.textAlign = 'left';
+				gbpDiv.style.textAlign = 'left';
 			} else {
-				accountsDiv.style.justifyContent = 'flex-start';
+				// accountsDiv.style.justifyContent = 'flex-start';
+				// gbpDiv.style.width = `${dkkAccountWidth}px`;
+				dkkDiv.style.textAlign = 'center';
+				gbpDiv.style.textAlign = 'center';
 			}
 		});
 		if (accountsRef.current) {
@@ -71,8 +77,9 @@ export const CopenhagenPage: FC = () => {
 					Venue:{' '}
 					<a
 						href="https://www.google.com/maps/place/Villa+Copenhagen/@55.6714149,12.5676969,15z/data=!4m8!3m7!1s0x0:0x93c823393bdc1527!5m2!4m1!1i2!8m2!3d55.6714149!4d12.5676969"
-						target="_blank"
-						rel="noopener noreferrer"
+						target="_blank" // open a link in a new tab
+						rel="noopener noreferrer" // prevent a type of phishing known as tabnabbing
+						// see https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/ for explanation
 					>
 						Villa Copenhagen
 					</a>
@@ -108,7 +115,7 @@ export const CopenhagenPage: FC = () => {
 				<div className="pt-2 pb-3"></div>
 
 				<h3>Schedule:</h3>
-				<h5 className="xs-h5 sm-h5">
+				<h5 className="xs-h5 sm-h5" style={{ marginBottom: 0 }}>
 					18:00: Arrival of the Guests
 					<br />
 					18:30: Guests Seated
@@ -124,26 +131,23 @@ export const CopenhagenPage: FC = () => {
 					03:00: Carriages Home
 				</h5>
 
-				<div style={{ padding: '1.2rem' }}></div>
+				<div style={{ padding: '1.7rem' }}></div>
 
-				<h5 className="xs-h5 sm-h5">Ønskeseddel:</h5>
-				<h6 className="xs-h6 sm-h6" style={{ marginBottom: '0.3rem' }}>
+				<h5 className="xs-h5 sm-h5 semi-bold">Ønskeseddel:</h5>
+				<h6 className="xs-h6 sm-h6" style={{ marginBottom: 0 }}>
 					I stedet for en traditionel ønskeseddel, ønsker vi os penge,
 					hvilket følger traditionen i Singapore. Det har også den
 					praktiske vinkel at vi ubesværet kan få vores gaver med på
 					flyrejsen hjem til London.
-					<br />
-					<br />
+					<div style={{ padding: '1em' }}></div>
 					Unfortunately, as we are no longer resident in Denmark, we
 					would like to follow the Singapore tradition of wedding
 					gifts in the form of red packets (money). We hope this will
 					help with the logistics and make things simpler for our
 					guests and ourselves.
-					<br />
-					<br />
+					<div style={{ padding: '1em' }}></div>
 					Please find bank details below:
-					<br />
-					<br />
+					<div style={{ padding: '0.75rem' }}></div>
 					<div
 						ref={accountsRef}
 						style={{
@@ -151,11 +155,11 @@ export const CopenhagenPage: FC = () => {
 							justifyContent: 'space-evenly',
 							flexWrap: 'wrap',
 							columnGap: '2rem',
-							rowGap: '1rem',
+							rowGap: '1.5rem',
 						}}
 					>
 						<div style={{ whiteSpace: 'nowrap' }}>
-							<b>DKK</b>
+							<span className="semi-bold">DKK</span>
 							<br />
 							Michelle Savage
 							<br />
@@ -164,13 +168,129 @@ export const CopenhagenPage: FC = () => {
 							Account No: 6288478889
 						</div>
 						<div style={{ whiteSpace: 'nowrap' }}>
-							<b>GBP</b>
+							<span className="semi-bold">GBP</span>
 							<br />
 							Michelle Savage
 							<br />
 							Sort Code: 40-17-10
 							<br />
 							Account No: 12220563
+						</div>
+					</div>
+				</h6>
+
+				<div style={{ padding: '1.7rem' }}></div>
+
+				<h5 className="xs-h5 sm-h5 semi-bold">Accommodation:</h5>
+				<h6
+					className="xs-h6 sm-h6"
+					style={{
+						marginBottom: '0.3rem',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+					}}
+				>
+					For guests requiring accommodation in Copenhagen, we provide
+					the below recommendations:
+					<div style={{ padding: '0.75rem' }}></div>
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							textAlign: 'justify',
+							width: '80%',
+						}}
+					>
+						<div
+							className="semi-bold"
+							style={{
+								textAlign: 'center',
+								// width: '100%',
+							}}
+						>
+							Villa Copenhagen
+						</div>
+						<div>
+							Villa offers reduced rates on their{' '}
+							<a
+								href="https://villacopenhagen.com/rooms/"
+								target="_blank" // open a link in a new tab
+								rel="noopener noreferrer" // prevent a type of phishing known as tabnabbing
+								// see https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/ for explanation
+							>
+								rooms
+							</a>{' '}
+							in connection with our wedding:
+							<div
+								style={{
+									display: 'flex',
+									justifyContent: 'center',
+									margin: '0.5em 0px',
+								}}
+							>
+								<table
+									style={{
+										border: '0px',
+										width: '80%',
+										maxWidth: '300px',
+									}}
+								>
+									<tbody>
+										<tr>
+											<td>Standard dbl</td>
+											<td className="td-right">1895</td>
+										</tr>
+										<tr>
+											<td>Superior dbl</td>
+											<td className="td-right">2095</td>
+										</tr>
+										<tr>
+											<td>Deluxe dbl</td>
+											<td className="td-right">3295</td>
+										</tr>
+										<tr>
+											<td>Junior Suite dbl</td>
+											<td className="td-right">4295</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							If you would like to stay in the Hotel after the
+							party, please contact{' '}
+							<a
+								href="mailto:elsa.weman@villacph.com"
+								target="_blank" // open a link in a new tab
+								rel="noopener noreferrer" // prevent a type of phishing known as tabnabbing
+								// see https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/ for explanation
+							>
+								elsa.weman@villacph.com
+							</a>
+							.
+						</div>
+						<div style={{ padding: '1em' }}></div>
+						{/* https://www.marriott.com/hotels/travel/cphox-moxy-copenhagen-sydhavnen/ */}
+						<div
+							className="semi-bold"
+							style={{
+								textAlign: 'center',
+								// width: '100%',
+							}}
+						>
+							Moxy Sydhavn
+						</div>
+						<div>
+							If you would like to stay in this hotel, please{' '}
+							<a
+								href="https://www.marriott.com/en-us/hotels/cphox-moxy-copenhagen-sydhavnen/overview/"
+								target="_blank" // open a link in a new tab
+								rel="noopener noreferrer" // prevent a type of phishing known as tabnabbing
+								// see https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/ for explanation
+							>
+								book
+							</a>{' '}
+							with the hotel directly.
 						</div>
 					</div>
 				</h6>
