@@ -38,8 +38,9 @@ export const SingaporePage: FC = () => {
 					Venue:{' '}
 					<a
 						href="https://www.google.com/maps/place/Orchard+Hotel+Singapore/@1.3075,103.8286111,15z/data=!4m8!3m7!1s0x0:0x2dd9483a55dcece2!5m2!4m1!1i2!8m2!3d1.3075!4d103.8286111"
-						target="_blank"
-						rel="noopener noreferrer"
+						target="_blank" // open a link in a new tab
+						rel="noopener noreferrer" // prevent a type of phishing known as tabnabbing
+						// see https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/ for explanation
 					>
 						Orchard Hotel Singapore
 					</a>
@@ -75,7 +76,7 @@ export const SingaporePage: FC = () => {
 				<div className="pt-2 pb-3"></div>
 
 				<h3>Schedule:</h3>
-				<h5 className="xs-h5 sm-h5">
+				<h5 className="xs-h5 sm-h5" style={{ marginBottom: 0 }}>
 					18:30: Arrival of the Guests
 					<br />
 					19:00: Guests Seated
@@ -89,9 +90,11 @@ export const SingaporePage: FC = () => {
 					00:00: Carriages Home
 				</h5>
 
-				<div style={{ padding: '1.2rem' }}></div>
+				<div style={{ padding: '1.7rem' }}></div>
 
-				<h5 className="xs-h5 sm-h5">Fun Customs & Traditions:</h5>
+				<h5 className="xs-h5 sm-h5 semi-bold">
+					Fun Customs & Traditions:
+				</h5>
 				<h6 className="xs-h6 sm-h6" style={{ marginBottom: '0.3rem' }}>
 					<ul className="traditions-ul">
 						<li>

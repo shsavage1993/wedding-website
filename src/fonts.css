@@ -110,6 +110,11 @@ code {
 	}
 }
 
+.semi-bold {
+	-webkit-text-stroke-width: 0.3px;
+	-webkit-text-stroke-color: inherit;
+}
+
 .xs-h5 {
 	margin-top: -0.25rem;
 	text-align: center;
@@ -138,6 +143,7 @@ code {
 @media (min-width: 576px) {
 	.sm-h6 {
 		width: 75%;
+		min-width: 370px;
 		max-width: 600px;
 		/* margin-top: -0.25rem; */
 		text-align: justify;
@@ -155,6 +161,10 @@ code {
 
 .traditions-ul li {
 	margin-bottom: 1rem;
+}
+
+.td-right {
+	text-align: right;
 }
 
 /* Extra Small <576px
