@@ -138,29 +138,19 @@ export const CopenhagenPage: FC = () => {
 					>
 						<div>
 							<span className="semi-bold">Email: </span>
-							jesstaervilladsen@gmail.com
+							<a
+								href="mailto:jesstaervilladsen@gmail.com"
+								target="_blank" // open a link in a new tab
+								rel="noopener noreferrer" // prevent a type of phishing known as tabnabbing
+								// see https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/ for explanation
+							>
+								jesstaervilladsen@gmail.com
+							</a>
 							<br />
 							<span className="semi-bold">Phone: </span>
 							+45 30 49 19 84
 						</div>
 					</div>
-					{/* <div
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'center',
-							alignItems: 'center',
-						}}
-					>
-						<div>
-							<span className="semi-bold">Email: </span>
-							jesstaervilladsen@gmail.com
-						</div>
-						<div>
-							<span className="semi-bold">Phone: </span>
-							+45 30 49 19 84
-						</div>
-					</div> */}
 				</h6>
 				<div style={{ padding: '1.7rem' }}></div>
 				<h5 className="xs-h5 sm-h5 semi-bold">Ønskeseddel:</h5>
@@ -169,13 +159,13 @@ export const CopenhagenPage: FC = () => {
 					hvilket følger traditionen i Singapore. Det har også den
 					praktiske vinkel at vi ubesværet kan få vores gaver med på
 					flyrejsen hjem til London.
-					<div style={{ padding: '1em' }}></div>
+					<div style={{ padding: '1rem' }}></div>
 					Unfortunately, as we are no longer resident in Denmark, we
 					would like to follow the Singapore tradition of wedding
 					gifts in the form of red packets (money). We hope this will
 					help with the logistics and make things simpler for our
 					guests and ourselves.
-					<div style={{ padding: '1em' }}></div>
+					<div style={{ padding: '1rem' }}></div>
 					Please find bank details below:
 					<div style={{ padding: '0.75rem' }}></div>
 					<div
@@ -255,7 +245,7 @@ export const CopenhagenPage: FC = () => {
 								style={{
 									display: 'flex',
 									justifyContent: 'center',
-									margin: '0.75em 0px',
+									margin: '0.75rem 0px',
 								}}
 							>
 								<table
@@ -297,7 +287,7 @@ export const CopenhagenPage: FC = () => {
 							</a>
 							.
 						</div>
-						<div style={{ padding: '1em' }}></div>
+						<div style={{ padding: '0.75rem' }}></div>
 						{/* https://www.marriott.com/hotels/travel/cphox-moxy-copenhagen-sydhavnen/ */}
 						<div
 							className="semi-bold"
