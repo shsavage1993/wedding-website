@@ -66,9 +66,7 @@ export const CopenhagenPage: FC = () => {
 				>
 					Copenhagen
 				</h1>
-
 				<div className="py-3"></div>
-
 				<h5 className="xs-h5 sm-h5">
 					Date: 21 May 2022
 					<br />
@@ -86,13 +84,9 @@ export const CopenhagenPage: FC = () => {
 					<br />
 					Dresscode: Formal/Cocktail
 				</h5>
-
 				<div className="py-2"></div>
-
 				<RsvpButton />
-
 				<div className="py-3"></div>
-
 				<div className="xs-city-logo-program sm-city-logo-program d-flex flex-column justify-content-center align-items-center">
 					<div
 						className="city-logo-div"
@@ -113,7 +107,6 @@ export const CopenhagenPage: FC = () => {
 					</div>
 				</div>
 				<div className="pt-2 pb-3"></div>
-
 				<h3>Schedule:</h3>
 				<h5 className="xs-h5 sm-h5" style={{ marginBottom: 0 }}>
 					18:00: Arrival of the Guests
@@ -130,9 +123,46 @@ export const CopenhagenPage: FC = () => {
 					<br />
 					03:00: Carriages Home
 				</h5>
-
 				<div style={{ padding: '1.7rem' }}></div>
-
+				<h5 className="xs-h5 sm-h5 semi-bold">Toastmaster:</h5>
+				<h6 className="xs-h6 sm-h6" style={{ marginBottom: 0 }}>
+					We are pleased to have Jesper as our Toastmaster for the
+					day. Should you wish to make a toast, please contact him at:
+					<div style={{ padding: '0.75rem' }}></div>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						<div>
+							<span className="semi-bold">Email: </span>
+							jesstaervilladsen@gmail.com
+							<br />
+							<span className="semi-bold">Phone: </span>
+							+45 30 49 19 84
+						</div>
+					</div>
+					{/* <div
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						<div>
+							<span className="semi-bold">Email: </span>
+							jesstaervilladsen@gmail.com
+						</div>
+						<div>
+							<span className="semi-bold">Phone: </span>
+							+45 30 49 19 84
+						</div>
+					</div> */}
+				</h6>
+				<div style={{ padding: '1.7rem' }}></div>
 				<h5 className="xs-h5 sm-h5 semi-bold">Ønskeseddel:</h5>
 				<h6 className="xs-h6 sm-h6" style={{ marginBottom: 0 }}>
 					I stedet for en traditionel ønskeseddel, ønsker vi os penge,
@@ -178,9 +208,7 @@ export const CopenhagenPage: FC = () => {
 						</div>
 					</div>
 				</h6>
-
 				<div style={{ padding: '1.7rem' }}></div>
-
 				<h5 className="xs-h5 sm-h5 semi-bold">Accommodation:</h5>
 				<h6
 					className="xs-h6 sm-h6"
@@ -227,7 +255,7 @@ export const CopenhagenPage: FC = () => {
 								style={{
 									display: 'flex',
 									justifyContent: 'center',
-									margin: '0.5em 0px',
+									margin: '0.75em 0px',
 								}}
 							>
 								<table
@@ -294,7 +322,6 @@ export const CopenhagenPage: FC = () => {
 						</div>
 					</div>
 				</h6>
-
 				{/* <div style={{ padding: '1.2rem' }}></div>
 
 				<h5 className="xs-h5 sm-h5">
